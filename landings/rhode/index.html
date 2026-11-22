@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="es" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>peptide lip treatment · rhode</title>
+<meta name="description" content="El tratamiento de labios más viral de TikTok. Hidrata, rellena y deja un brillo glaseado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f3f2ef;
+    --paper:#ffffff;
+    --ink:#161616;
+    --muted:#8a8784;
+    --line:#dcdad6;
+    --chip:#e8e6e2;
+    --glaze:#d9d6d1;
+    --brand:#67645e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{overflow-x:clip}
+  body{background:var(--bg);color:var(--ink);font-family:"Inter Tight",Helvetica,Arial,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.4;padding-bottom:84px}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+  .label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  h1,h2,h3{font-weight:400;letter-spacing:-.02em;line-height:1.02;text-transform:lowercase}
+  h1{font-size:clamp(44px,11vw,104px)}
+  h2{font-size:clamp(34px,7.5vw,68px)}
+  h3{font-size:22px;letter-spacing:-.01em}
+  p.lead{font-size:17px;color:#3c3a38;max-width:34ch}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:18px 28px;border-radius:999px;border:0;cursor:pointer;transition:transform .15s ease,opacity .15s}
+  .btn:hover{transform:translateY(-1px);opacity:.92}
+  .btn.full{width:100%}
+
+  /* logo (svg oficial inline) */
+  .logo{display:block;color:var(--brand);line-height:0}
+  .logo svg{width:84px;height:auto;display:block}
+  .logo.lg svg{width:min(220px,55vw)}
+  .logo.lg{color:#fff}
+
+  .bar{background:var(--ink);color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:9px 16px}
+  header.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;max-width:1120px;margin:0 auto}
+  .nav a.mini{font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+
+  /* hero */
+  .hero{position:relative;display:grid;gap:0}
+  .hero-media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--glaze)}
+  .hero-media img{object-position:50% 40%}
+  .hero-copy{padding:22px 16px 36px;display:grid;gap:14px}
+  .stars{display:flex;align-items:center;gap:8px;font-size:13px}
+  .stars b{letter-spacing:2px;font-weight:400}
+  .tag-pill{position:absolute;left:16px;top:16px;background:rgba(255,255,255,.88);backdrop-filter:blur(6px);padding:8px 12px;border-radius:999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+  @media(min-width:900px){
+    .hero{grid-template-columns:1.05fr 1fr;align-items:center;max-width:1120px;margin:0 auto;padding:0 16px;gap:56px}
+    .hero-media{aspect-ratio:4/5;border-radius:4px}
+    .hero-copy{padding:0}
+  }
+
+  .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);white-space:nowrap}
+  .marquee-track{display:inline-flex;gap:40px;padding:14px 0;animation:mq 28s linear infinite;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  .marquee-track span::after{content:"✦";margin-left:40px;color:var(--muted)}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  section{padding:72px 0}
+  .sec-head{display:grid;gap:14px;margin-bottom:32px}
+
+  /* antes / después */
+  .badge{position:absolute;left:10px;top:10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#fff;padding:6px 9px;border-radius:999px;font-weight:500}
+  .badge.dark{background:var(--ink);color:#fff}
+  ul.ticks{list-style:none;display:grid;gap:7px;font-size:14px}
+  ul.ticks li{display:flex;gap:8px;align-items:flex-start}
+  ul.ticks li::before{flex:none;width:16px;text-align:center}
+  .ba{display:grid;gap:10px}
+  .ba-row{background:var(--paper);border-radius:4px;overflow:hidden}
+  .ba-ph{position:relative;aspect-ratio:1320/560;overflow:hidden;background:var(--chip)}
+  .ba-ph img{position:absolute;left:0;top:0;width:100%;height:auto}
+  .ba-ph img.bottom{transform:translateY(-51.04%)}
+  .ba-row ul.ticks{grid-auto-flow:column;grid-template-columns:repeat(3,auto);justify-content:space-between;padding:12px 14px;font-size:13px}
+  .before ul.ticks li{color:var(--muted)}
+  .before ul.ticks li::before{content:"✕"}
+  .after ul.ticks li::before{content:"✓"}
+  @media(min-width:900px){.problem-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:end}}
+
+  /* claims */
+  .claims{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+  .claim{padding:22px 4px 22px 0;border-bottom:1px solid var(--line);display:grid;gap:8px}
+  .claim:nth-child(odd){padding-right:14px;border-right:1px solid var(--line)}
+  .claim:nth-child(even){padding-left:14px}
+  .claim .n{font-size:clamp(40px,9vw,64px);letter-spacing:-.04em;line-height:1}
+  .claim p{font-size:13px;color:#3c3a38}
+  .foot{font-size:11px;color:var(--muted);margin-top:14px}
+  @media(min-width:900px){.claims{grid-template-columns:repeat(4,1fr)}.claim{border-right:1px solid var(--line)!important;padding:28px 18px!important}.claim:last-child{border-right:0!important}}
+
+  /* social */
+  .social{background:var(--ink);color:#fff}
+  .social .label{color:#a9a6a2}
+  .social h2 em{font-style:normal;color:#b9b5b0}
+  .tt-strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;margin:0 -16px;padding:0 16px 6px;scrollbar-width:none}
+  .tt-strip::-webkit-scrollbar{display:none}
+  .tt{flex:none;width:min(72vw,300px);scroll-snap-align:start;display:grid;gap:8px}
+  .tt .frame{aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#222}
+  .tt iframe{width:100%;height:100%;border:0;display:block}
+  .tt a{font-size:12px;color:#a9a6a2;text-decoration:none}
+  .tt a b{color:#fff;font-weight:500}
+  .reviews{display:grid;gap:10px;margin-top:40px}
+  .rv{background:#222;border-radius:14px;padding:16px;display:grid;gap:8px}
+  .rv .top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;color:#a9a6a2}
+  .rv .st{letter-spacing:2px;color:#fff;font-size:12px}
+  .rv h4{font-weight:500;font-size:15px}
+  .rv p{font-size:15px;line-height:1.45}
+  .rv small{font-size:11px;color:#8d8a86}
+  .review-summary{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;margin-top:28px;padding-top:24px;border-top:1px solid #333}
+  .review-summary .big{font-size:56px;letter-spacing:-.04em;line-height:1}
+  .award{display:inline-flex;gap:8px;align-items:center;border:1px solid #444;border-radius:999px;padding:8px 14px;font-size:12px}
+  .src{font-size:11px;color:#8d8a86;margin-top:14px}
+  @media(min-width:900px){.reviews{grid-template-columns:repeat(3,1fr)}}
+
+  /* sabores: carrusel diagonal con blur */
+  .shop{display:grid;gap:28px}
+  #comprar{overflow:hidden}
+  .stage{position:relative;aspect-ratio:1/1;background:transparent;color:var(--ink);touch-action:pan-y;user-select:none}
+  .stage .item{position:absolute;left:44%;top:18%;width:58%;aspect-ratio:1/1;transition:transform .9s cubic-bezier(.65,0,.35,1),filter .9s cubic-bezier(.65,0,.35,1),opacity .9s cubic-bezier(.65,0,.35,1);will-change:transform,filter,opacity}
+  .stage .item img{object-fit:contain;pointer-events:none}
+  .stage .meta{position:absolute;left:0;top:0;bottom:0;width:46%;z-index:10;display:flex;flex-direction:column;justify-content:center;gap:8px}
+  .stage .meta .label{color:var(--muted)}
+  .stage .meta .nm{font-size:clamp(28px,7.5vw,52px);letter-spacing:-.03em;line-height:1;text-transform:lowercase;transition:opacity .35s}
+  .stage .meta .sm{font-size:14px;color:#3c3a38;transition:opacity .35s}
+  .stage .meta.swap .nm,.stage .meta.swap .sm{opacity:0}
+  .stage .count{font-size:11px;letter-spacing:.14em;font-weight:500;margin-bottom:6px}
+  .stage .arrows{display:flex;gap:6px;margin-top:10px}
+  .stage .arrows button{width:40px;height:40px;border-radius:50%;border:1px solid currentColor;background:transparent;color:inherit;font-size:16px;cursor:pointer}
+  .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .sw{border:1px solid var(--line);background:var(--paper);border-radius:6px;padding:8px 4px 10px;cursor:pointer;display:grid;gap:6px;justify-items:center;font:inherit;font-size:11px;color:var(--ink);text-transform:lowercase;line-height:1.15;text-align:center}
+  .sw .dot{width:26px;height:26px;border-radius:50%;border:1px solid rgba(0,0,0,.08)}
+  .sw[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  .price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:16px}
+  .price .v{font-size:28px;letter-spacing:-.02em}
+  .mini-trust{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted)}
+  .info{border-top:1px solid var(--line)}
+  .info details{border-bottom:1px solid var(--line)}
+  .info summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+  .info summary::-webkit-details-marker{display:none}
+  .info summary::after{content:"+";font-size:18px;font-weight:300;letter-spacing:0}
+  .info details[open] summary::after{content:"–"}
+  .info .bd{padding:0 0 18px;font-size:14px;color:#3c3a38;display:grid;gap:10px}
+  .info .bd ul{padding-left:18px;display:grid;gap:6px}
+  .info .kv{display:grid;grid-template-columns:110px 1fr;gap:6px 12px}
+  .info .kv b{font-weight:500;color:var(--ink);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding-top:2px}
+  .info .inci{font-size:12px;line-height:1.55;color:var(--muted)}
+  @media(min-width:900px){.shop{grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}.stage{position:sticky;top:24px}}
+
+  /* ingredientes */
+  .ingr{display:grid;gap:8px}
+  .ing{background:var(--paper);border-radius:4px;padding:22px 18px;display:grid;gap:10px}
+  .ing .k{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .ing .k .label{color:var(--ink)}
+  .ing p{font-size:14px;color:#3c3a38}
+  .ing ul{font-size:13px;color:#3c3a38;padding-left:18px;display:grid;gap:3px}
+  .fyi{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .fyi span{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:7px 12px;background:var(--paper)}
+  @media(min-width:900px){.ingr-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}}
+
+  /* final */
+  .final{position:relative;overflow:hidden;color:#fff;min-height:88vh;display:flex;align-items:flex-end}
+  .final > img{position:absolute;inset:0}
+  .final::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.6));z-index:1}
+  .final .wrap{position:relative;z-index:2;padding-bottom:56px;display:grid;gap:18px;width:100%}
+  .final .btn{background:#fff;color:var(--ink)}
+  footer{padding:28px 16px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:.06em}
+
+  /* sticky */
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(243,242,239,.92);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:12px;align-items:center;transform:translateY(110%);transition:transform .3s ease}
+  .sticky.on{transform:none}
+  .sticky .thumb{width:46px;height:46px;flex:none}
+  .sticky .thumb img{object-fit:contain;padding:4px}
+  .sticky .info2{flex:1;min-width:0;font-size:13px;line-height:1.25}
+  .sticky .info2 small{display:block;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sticky .btn{padding:14px 18px;font-size:12px}
+  @media(min-width:900px){.sticky{left:auto;right:24px;bottom:24px;border:1px solid var(--line);border-radius:999px;padding:8px 8px 8px 10px;max-width:440px}}
+
+  /* CTA al final de cada bloque */
+  .cta-row{margin-top:36px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .cta-row small{font-size:12px;color:var(--muted)}
+  .btn.light{background:#fff;color:var(--ink)}
+  @media(max-width:899px){.cta-row .btn{width:100%}}
+
+  /* efectos de scroll (solo en algunos bloques, intercalados) */
+  .js .fx-wipe{clip-path:inset(0 100% 0 0);transition:clip-path 1.1s cubic-bezier(.65,0,.35,1)}
+  .js .fx-wipe.in{clip-path:inset(0 0 0 0)}
+  .js .fx-wipe.d2{transition-delay:.25s}
+  .js .fx-stagger > *{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .js .fx-stagger.in > *{opacity:1;transform:none}
+  .js .fx-stagger.in > *:nth-child(2){transition-delay:.08s}
+  .js .fx-stagger.in > *:nth-child(3){transition-delay:.16s}
+  .js .fx-stagger.in > *:nth-child(4){transition-delay:.24s}
+  .js .fx-stagger.in > *:nth-child(5){transition-delay:.32s}
+  .js .fx-stagger.in > *:nth-child(6){transition-delay:.40s}
+  .js .fx-slide > *{opacity:0;transform:translateX(40px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .js .fx-slide.in > *{opacity:1;transform:none}
+  .js .fx-slide.in > *:nth-child(2){transition-delay:.12s}
+  .js .fx-slide.in > *:nth-child(3){transition-delay:.24s}
+  .js .fx-slide.in > *:nth-child(4){transition-delay:.36s}
+  .js .fx-zoom > img{transform:scale(1.14);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
+  .js .fx-zoom.in > img{transform:scale(1)}
+  @media (prefers-reduced-motion:reduce){.js .fx-wipe,.js .fx-stagger > *,.js .fx-slide > *,.js .fx-zoom > img{clip-path:none;opacity:1;transform:none;transition:none}.marquee-track{animation:none}.stage .item{transition:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="rhode-logo" viewBox="0 0 100 26"><path fill="currentColor" d="M45.8649 21.7973C42.538 21.7973 40.3071 19.5579 40.3071 16.2073C40.3071 12.8567 42.538 10.6326 45.8649 10.6326C49.1918 10.6326 51.4041 12.8703 51.4041 16.2073C51.4041 19.5444 49.1731 21.7973 45.8649 21.7973ZM45.8734 6.42658C39.6787 6.42658 35.5234 10.348 35.5234 16.1938C35.5234 22.0751 39.6787 25.9966 45.8734 25.9966C52.0325 25.9966 56.186 22.0751 56.186 16.1938C56.186 10.348 52.0325 6.42658 45.8734 6.42658Z"/><path fill="currentColor" d="M11.7525 6.47027C11.8789 6.46892 12.0007 6.51772 12.0912 6.60598C12.1817 6.69425 12.2335 6.81479 12.2353 6.94119V10.6424C12.2335 10.7338 12.1979 10.8213 12.1353 10.888C12.0727 10.9546 11.9876 10.9957 11.8965 11.0032C11.1037 11.049 9.08286 10.6221 7.43636 11.2912C6.88218 11.5524 6.3947 11.9363 6.01083 12.4138C5.62696 12.8913 5.35676 13.4499 5.2207 14.0472C4.99541 15.0179 5.01743 23.1098 5.02759 25.1594C5.02693 25.2219 5.01396 25.2837 4.98942 25.3412C4.96488 25.3987 4.92926 25.4508 4.88459 25.4945C4.83992 25.5383 4.78707 25.5728 4.72906 25.5961C4.67105 25.6194 4.60902 25.631 4.54651 25.6303H0.481076C0.418567 25.631 0.356538 25.6194 0.29853 25.5961C0.240523 25.5728 0.187675 25.5383 0.143002 25.4945C0.098329 25.4508 0.0627064 25.3987 0.0381701 25.3412C0.0136338 25.2837 0.000663799 25.2219 0 25.1594L0 7.3562C0.000663047 7.28621 0.0151358 7.21703 0.0425874 7.15264C0.070039 7.08825 0.10993 7.02991 0.159973 6.98097C0.210017 6.93203 0.269228 6.89344 0.334213 6.86743C0.399198 6.84142 0.468679 6.82849 0.538671 6.82939H4.32122C4.45932 6.82792 4.59261 6.88004 4.69307 6.97482C4.79352 7.06959 4.85332 7.19962 4.85989 7.33757L4.88361 8.40644C4.88611 8.46891 4.90948 8.52873 4.94999 8.57635C4.9905 8.62397 5.0458 8.65664 5.10706 8.66912C5.16832 8.68161 5.232 8.6732 5.28791 8.64523C5.34383 8.61726 5.38875 8.57136 5.4155 8.51485C5.81866 7.66788 6.43186 6.909 7.1467 6.65153C7.5131 6.52333 7.89854 6.45804 8.28672 6.45842L11.7525 6.47027Z"/><path fill="currentColor" d="M33.6076 14.0068V25.1614C33.6069 25.224 33.5939 25.2859 33.5692 25.3435C33.5446 25.4011 33.5088 25.4533 33.464 25.4971C33.4191 25.5408 33.3661 25.5753 33.3079 25.5985C33.2497 25.6217 33.1874 25.6332 33.1248 25.6323H29.0594C28.9329 25.6336 28.8112 25.5848 28.7207 25.4966C28.6302 25.4083 28.5784 25.2878 28.5766 25.1614V14.803C28.5766 12.2722 26.7285 10.6088 23.9166 10.6088H21.003C20.7762 10.6061 20.5511 10.6482 20.3405 10.7325C20.1299 10.8169 19.9381 10.942 19.7759 11.1005C19.6137 11.2591 19.4843 11.4481 19.3952 11.6567C19.3061 11.8653 19.259 12.0894 19.2566 12.3163V25.1614C19.2559 25.224 19.2429 25.2859 19.2182 25.3435C19.1936 25.4011 19.1578 25.4533 19.113 25.4971C19.0681 25.5408 19.0151 25.5753 18.9569 25.5985C18.8987 25.6217 18.8364 25.6332 18.7738 25.6323H14.7084C14.582 25.6336 14.4602 25.5848 14.3697 25.4966C14.2792 25.4083 14.2274 25.2878 14.2256 25.1614L14.2256 0.616282C14.2274 0.489885 14.2792 0.369349 14.3697 0.28108C14.4602 0.192814 14.582 0.144012 14.7084 0.145369H18.7738C18.9002 0.144012 19.022 0.192814 19.1125 0.28108C19.203 0.369349 19.2548 0.489885 19.2566 0.616282V5.94201C19.2579 6.0684 19.3093 6.18912 19.3995 6.2777C19.4896 6.36628 19.6112 6.41551 19.7376 6.41461H25.6952C30.4382 6.43155 33.6076 9.46369 33.6076 14.0051"/><path fill="currentColor" d="M73.5606 16.6856C73.5606 19.4908 71.2348 21.7674 68.3653 21.7674C65.4957 21.7674 63.1717 19.4942 63.1717 16.6856V15.7387C63.1717 12.9336 65.4974 10.6569 68.3653 10.6569H71.9513C72.1602 10.6545 72.3675 10.6932 72.5615 10.7708C72.7554 10.8485 72.9321 10.9636 73.0815 11.1096C73.231 11.2556 73.3502 11.4295 73.4324 11.6216C73.5146 11.8137 73.5581 12.02 73.5606 12.2289V16.6856ZM77.7259 0.146078H74.4177C74.305 0.143826 74.1931 0.164068 74.0884 0.205622C73.9836 0.247177 73.8883 0.309206 73.8078 0.388079C73.7274 0.466953 73.6635 0.561085 73.6198 0.664963C73.5762 0.768843 73.5538 0.880379 73.5538 0.993044V5.77332C73.5498 5.95559 73.4741 6.12894 73.3431 6.25578C73.2122 6.38262 73.0365 6.45272 72.8542 6.45089H67.5302C67.52 6.45089 67.5098 6.45089 67.498 6.45089C62.0977 6.45089 57.9561 10.5367 57.9561 16.6484C57.9561 22.65 62.0977 25.9819 67.498 25.9819C69.7119 25.9819 71.5126 25.3416 72.8559 24.2135C73.4115 23.7459 73.5335 24.0881 73.5606 24.803C73.5809 25.2569 73.6351 25.6194 74.5549 25.6194H77.7259C77.8386 25.6217 77.9505 25.6014 78.0553 25.5599C78.16 25.5183 78.2554 25.4563 78.3358 25.3774C78.4163 25.2986 78.4802 25.2044 78.5238 25.1005C78.5674 24.9967 78.5899 24.8851 78.5898 24.7725V0.993044C78.5899 0.880379 78.5674 0.768843 78.5238 0.664963C78.4802 0.561085 78.4163 0.466953 78.3358 0.388079C78.2554 0.309206 78.16 0.247177 78.0553 0.205622C77.9505 0.164068 77.8386 0.143826 77.7259 0.146078Z"/><path fill="currentColor" d="M90.2671 10.6247C92.3506 10.6247 94.4206 11.89 94.5188 13.8652C94.5191 13.8844 94.5155 13.9034 94.5082 13.9212C94.501 13.939 94.4903 13.9551 94.4767 13.9687C94.4631 13.9822 94.447 13.993 94.4292 14.0002C94.4114 14.0074 94.3924 14.0111 94.3732 14.0108H86.0255C86.0063 14.0113 85.9872 14.0079 85.9694 14.0007C85.9516 13.9935 85.9355 13.9828 85.922 13.9691C85.9085 13.9555 85.8979 13.9392 85.891 13.9213C85.884 13.9034 85.8808 13.8843 85.8815 13.8652C85.9865 11.9307 88.1734 10.6247 90.2671 10.6247ZM99.1246 17.9086C99.3281 17.9125 99.5257 17.8406 99.6791 17.707C99.8325 17.5733 99.9307 17.3873 99.9547 17.1853C99.9852 16.8634 100 16.5342 100 16.1977C100 10.3452 96.2196 6.42202 90.2586 6.43049C84.5348 6.43896 80.3999 10.6924 80.4338 16.2892C80.4745 22.1197 84.318 26.0005 90.2722 26.0005C94.551 26.0005 97.5815 23.9678 99.0806 20.6426C99.1095 20.5713 99.1203 20.4939 99.1119 20.4175C99.1036 20.341 99.0763 20.2678 99.0326 20.2045C98.989 20.1412 98.9302 20.0897 98.8617 20.0547C98.7932 20.0197 98.7171 20.0022 98.6402 20.004H94.3325C94.1657 20.0078 94.0013 20.0453 93.8493 20.1143C93.6974 20.1833 93.5609 20.2823 93.4483 20.4054C92.5928 21.288 91.6646 21.8012 90.2688 21.8012C87.838 21.8012 85.8764 20.3072 85.8764 17.9052L99.1246 17.9086Z"/></symbol></svg>
+
+<div class="bar">lip care is skin care</div>
+<header class="nav">
+  <a class="logo" href="#" aria-label="rhode"><svg viewBox="0 0 100 26"><use href="#rhode-logo"/></svg></a>
+  <a class="mini" href="#comprar">comprar</a>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="hero-media">
+    <img src="img/hero-1.jpg" alt="Hailey con peptide lip treatment" fetchpriority="high">
+    <span class="tag-pill">el gloss más viral de tiktok</span>
+  </div>
+  <div class="hero-copy">
+    <div class="stars"><b>★★★★★</b> 4,5 · +17.800 reseñas</div>
+    <h1>labios glaseados, todo el día.</h1>
+    <p class="lead">El tratamiento con péptidos que hidrata como un bálsamo y brilla como un gloss. Un gesto, cero tirantez.</p>
+    <a class="btn" href="#comprar">quiero los míos →</a>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>hidrata</span><span>nutre</span><span>repara</span><span>rellena</span><span>brilla</span><span>sin pegar</span>
+    <span>hidrata</span><span>nutre</span><span>repara</span><span>rellena</span><span>brilla</span><span>sin pegar</span>
+  </div>
+</div>
+
+<!-- PROBLEMA + ANTES/DESPUÉS -->
+<section>
+  <div class="wrap problem-grid">
+    <div class="sec-head">
+      <span class="label">01 — el problema</span>
+      <h2>¿cansada de que tus labios se vean así?</h2>
+      <p class="lead">Pellejitos, grietas, ese bálsamo que desaparece en diez minutos. Tus labios también son piel, y piden algo más que vaselina. Mira lo que cambian en 4 semanas.</p>
+    </div>
+    <div class="ba">
+      <div class="ba-row before">
+        <div class="ba-ph fx-wipe"><img src="img/antes-despues.webp" alt="Labios secos y agrietados el día 1" loading="lazy"><span class="badge">día 1</span></div>
+        <ul class="ticks"><li>secos y tirantes</li><li>pellejitos y grietas</li><li>líneas marcadas</li></ul>
+      </div>
+      <div class="ba-row after">
+        <div class="ba-ph fx-wipe d2"><img class="bottom" src="img/antes-despues.webp" alt="Los mismos labios tras 4 semanas con peptide lip treatment" loading="lazy"><span class="badge dark">4 semanas con rhode</span></div>
+        <ul class="ticks"><li>hidratados y suaves</li><li>superficie lisa</li><li>líneas suavizadas</li></ul>
+      </div>
+      <div class="cta-row" style="margin-top:22px"><a class="btn" href="#comprar">quiero estos labios →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLAIMS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">02 — los resultados</span>
+      <h2>lo notas desde la primera vez.</h2>
+    </div>
+    <div class="claims">
+      <div class="claim"><div class="n">100%</div><p>nota menos la sequedad de sus labios</p></div>
+      <div class="claim"><div class="n">100%</div><p>dice que la fórmula se desliza sin esfuerzo</p></div>
+      <div class="claim"><div class="n">97%</div><p>siente los labios nutridos y protegidos</p></div>
+      <div class="claim"><div class="n">90%</div><p>los nota más suaves y flexibles</p></div>
+    </div>
+    <p class="foot">*Estudio de percepción con 32 participantes tras el uso inmediato.</p>
+    <div class="cta-row"><a class="btn" href="#comprar">probarlo yo →</a><small>20 € · 10 ml · envío desde rhodeskin.com</small></div>
+  </div>
+</section>
+
+<!-- PRUEBA SOCIAL: vídeos reales de TikTok + reseñas verificadas -->
+<section class="social">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">03 — tiktok made me buy it</span>
+      <h2>el gloss más viral de tiktok <em>puede ser tuyo.</em></h2>
+    </div>
+
+    <div class="tt-strip" id="ttStrip"></div>
+
+    <div class="reviews fx-stagger" id="reviews"></div>
+    <p class="src">Reseñas verificadas de compradoras en rhodeskin.com, traducidas del inglés.</p>
+
+    <div class="review-summary">
+      <div class="big">4,5</div>
+      <div><div style="letter-spacing:2px">★★★★★</div><div class="label" style="margin-top:4px">+17.800 reseñas</div></div>
+      <div class="award">✦ Allure Best of Beauty 2022 · mejor bálsamo labial sin color</div>
+    </div>
+    <div class="cta-row"><a class="btn light" href="#comprar">unirme al hype →</a></div>
+  </div>
+</section>
+
+<!-- SABORES / COMPRA -->
+<section id="comprar">
+  <div class="wrap shop">
+    <div class="stage" id="stage" aria-roledescription="carrusel" aria-label="sabores">
+      <!-- items se generan por JS -->
+      <div class="meta" id="meta">
+        <div class="count" id="count">01 / 05</div>
+        <span class="label">huele a</span>
+        <div class="nm" id="shadeName">sin aroma</div>
+        <div class="sm" id="shadeSmell">Sin fragancia.</div>
+        <div class="arrows">
+          <button type="button" id="prev" aria-label="Sabor anterior">←</button>
+          <button type="button" id="next" aria-label="Sabor siguiente">→</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="" style="display:grid;gap:20px">
+      <div class="sec-head" style="margin:0">
+        <span class="label">04 — elige el tuyo</span>
+        <h2>peptide lip treatment</h2>
+        <p class="lead">El tratamiento labial nutritivo que hidrata y repara mientras deja un acabado glossy de alto brillo. 10 ml.</p>
+      </div>
+      <div class="swatches" role="group" aria-label="sabor" id="swatches"></div>
+      <div class="price"><span class="label">precio</span><span class="v" id="price">20 €</span></div>
+      <a class="btn full" id="buy" href="https://www.rhodeskin.com/products/peptide-lip-treatment" target="_blank" rel="noopener">añadir a la cesta →</a>
+      <div class="mini-trust"><span>✓ vegano</span><span>✓ cruelty-free</span><span>✓ testado dermatológicamente</span><span>✓ sin gluten</span></div>
+
+      <div class="info">
+        <details open>
+          <summary>qué hace</summary>
+          <div class="bd">
+            <ul>
+              <li>Ayuda a sellar la hidratación al instante.</li>
+              <li>Nutre, hidrata y repara los labios secos.</li>
+              <li>Los deja mullidos y suaves al tacto.</li>
+              <li>Suaviza las líneas finas y rellena visiblemente con el uso.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>cómo funciona</summary>
+          <div class="bd">
+            <p><b>Péptido (palmitoyl tripeptide-1):</b> una cadena corta de aminoácidos que hidrata, alisa y rellena los labios mientras reduce la apariencia de las líneas finas.</p>
+            <p><b>Manteca de karité:</b> emoliente nutritivo con 5 ácidos grasos esenciales que hidrata en profundidad.</p>
+            <p><b>Vitamina E:</b> antioxidante que ayuda a proteger frente a las agresiones externas.</p>
+            <p><b>Babasú y cupuaçu:</b> aceites y mantecas vegetales que completan la nutrición.</p>
+          </div>
+        </details>
+        <details>
+          <summary>textura y aroma</summary>
+          <div class="bd kv">
+            <b>se siente</b><span>Un glaze denso que se desliza suave, sin efecto pegajoso.</span>
+            <b>huele a</b><span id="infoSmell">Sin fragancia.</span>
+            <b>para</b><span>Todo tipo de piel.</span>
+            <b>tamaño</b><span>10 ml</span>
+          </div>
+        </details>
+        <details>
+          <summary>cómo se usa</summary>
+          <div class="bd"><p>Glasea tus labios de día o de noche. Vuelve a aplicarlo siempre que te pidan hidratación con brillo. Truco: encima de tu lápiz de labios para un lip combo glaseado.</p></div>
+        </details>
+        <details>
+          <summary>ingredientes completos</summary>
+          <div class="bd"><p class="inci" id="inci"></p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTES -->
+<section style="padding-top:0">
+  <div class="wrap ingr-wrap">
+    <div class="sec-head">
+      <span class="label">05 — lo que lleva dentro</span>
+      <h2>skincare para tus labios.</h2>
+      <p class="lead">Los péptidos son el ingrediente estrella de rhode. Este es el que hace el trabajo en tus labios, y lo que le acompaña.</p>
+    </div>
+    <div class="ingr fx-slide">
+      <div class="ing"><div class="k"><span class="label">péptido</span><span class="label">palmitoyl tripeptide-1</span></div><h3>hidrata, alisa y rellena</h3><p>Una cadena corta de aminoácidos que hidrata, alisa y da volumen a los labios mientras reduce la apariencia de las líneas finas.</p></div>
+      <div class="ing"><div class="k"><span class="label">manteca de karité</span></div><h3>nutre en profundidad</h3><p>Emoliente nutritivo que hidrata gracias a 5 ácidos grasos esenciales:</p><ul><li>ácido palmítico</li><li>ácido esteárico</li><li>ácido oleico</li><li>ácido linoleico</li><li>ácido araquídico</li></ul></div>
+      <div class="ing"><div class="k"><span class="label">vitamina e</span></div><h3>protege</h3><p>Antioxidante que ayuda a proteger los labios frente a las agresiones externas.</p></div>
+      <div class="fyi"><span>+ aceite de babasú</span><span>+ manteca de cupuaçu</span><span>vegano</span><span>cruelty-free</span><span>sin gluten</span><span>testado dermatológicamente</span></div>
+    </div>
+  </div>
+  <div class="wrap"><div class="cta-row"><a class="btn" href="#comprar">glasear mis labios →</a></div></div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final fx-zoom">
+  <img src="img/hero-2.jpg" alt="" loading="lazy">
+  <div class="wrap">
+    <span class="logo lg" aria-label="rhode"><svg viewBox="0 0 100 26"><use href="#rhode-logo"/></svg></span>
+    <span class="label" style="color:#eee">lip care is skin care</span>
+    <h2>tus mismos labios, pero más glaseados.</h2>
+    <div><a class="btn" href="#comprar">elegir mi sabor →</a></div>
+  </div>
+</section>
+
+<footer>rhode · peptide lip treatment · landing de campaña</footer>
+
+<div class="sticky" id="sticky">
+  <div class="thumb" id="stickyThumb"><img id="stickyImg" src="" alt=""></div>
+  <div class="info2">peptide lip treatment<small id="stickyName">sin aroma · 20 €</small></div>
+  <a class="btn" id="stickyBuy" href="https://www.rhodeskin.com/products/peptide-lip-treatment" target="_blank" rel="noopener">comprar</a>
+</div>
+
+<script>
+  const PRICE = "20 €"; // ajustar al precio de tu mercado
+  const CDN = "img/";
+  const BASE_INCI = "Polyisobutene, Diisostearyl Malate, Butyrospermum Parkii (Shea) Butter, Polybutene, Microcrystalline Wax (Cera Microcristallina), Synthetic Beeswax, Synthetic Wax, Octyldodecanol, Hydrogenated Poly(C6-14 Olefin), Polyglyceryl-2 Triisostearate, Dimer Dilinoleyl Dimer Dilinoleate, Glyceryl Behenate/Eicosadioate, Triethyl Citrate, Tocopherol, Tocopheryl Acetate, Tetrahexyldecyl Ascorbate, Palmitoyl Tripeptide-1, Orbignya Oleifera Seed Oil*, Theobroma Grandiflorum Seed Butter, Lactic Acid, Tribehenin, Stevioside, Ethylhexyl Palmitate, Sorbitan Isostearate, Synthetic Fluorphlogopite, Disteardimonium Hectorite, o-Cymen-5-ol";
+
+  // Datos de rhodeskin.com (aroma e INCI por sabor)
+  const SHADES = [
+    {k:"unscented", name:"sin aroma", bg:"#e4e2de", fg:"#161616", dot:"#e9e8e5", img:"p-unscented.png", url:"peptide-lip-treatment", smell:"Sin fragancia. Solo glaze y nutrición.", inci:""},
+    {k:"vanilla", name:"rhode vanilla", bg:"#eee0c4", fg:"#161616", dot:"#f1e6d3", img:"p-vanilla.png", url:"peptide-lip-treatment-rhode-vanilla", smell:"Una porción de bizcocho de vainilla, suave y esponjoso.", inci:", Fragrance (Parfum)"},
+    {k:"caramel", name:"salted caramel", bg:"#c48f55", fg:"#ffffff", dot:"#c99a62", img:"p-caramel.png", url:"peptide-lip-treatment-salted-caramel", smell:"Una cucharada de helado de caramelo salado.", inci:", Fragrance (Parfum)"},
+    {k:"watermelon", name:"watermelon slice", bg:"#f0a2a4", fg:"#161616", dot:"#e98a8f", img:"p-watermelon.png", url:"peptide-lip-treatment-watermelon-slice", smell:"Una rodaja de sandía fresca en pleno verano.", inci:", Fragrance (Parfum), Dimethyl Phenethyl Acetate, Geranyl Acetate"},
+    {k:"strawberry", name:"strawberry glaze", bg:"#d24a54", fg:"#ffffff", dot:"#d8474f", img:"p-strawberry.png", url:"peptide-lip-treatment-strawberry-glaze", smell:"Un donut glaseado de fresa recién hecho.", inci:", Flavor (Aroma), Vanillin"}
+  ];
+
+  // Vídeos reales de TikTok (reproductor oficial de TikTok)
+  const TIKTOKS = [
+    {id:"7368548518832721194", user:"rhode", note:"por qué Madison lleva tantos encima"},
+    {id:"7644675666251631886", user:"rhode", note:"lip combo: balm, gloss y peptide treatment"},
+    {id:"7378961726328425760", user:"mr.andre.fernandes", note:"review del peptide lip treatment"},
+    {id:"7336622021838703914", user:"alishasapproach", note:"lip balm test + review honesta"}
+  ];
+
+  // Reseñas reales verificadas (rhodeskin.com), traducidas
+  const REVIEWS = [
+    {n:"Anna L. C.", s:"strawberry glaze", t:"increíble", b:"¡Mis labios nunca habían estado tan bien! Hidrata muchísimo y les da el brillo perfecto 🦋"},
+    {n:"Sierra F.", s:"salted caramel", t:"mi nuevo imprescindible", b:"No puedo vivir sin él. Labios jugosos, suaves y bonitos al instante."},
+    {n:"Daphne G.", s:"strawberry glaze", t:"el mejor", b:"No pega, huele genial. Mantiene mis labios hidratados, merece totalmente la pena."},
+    {n:"chen z.", s:"watermelon slice", t:"huele muy bien e hidrata", b:"¡Me encanta! Mis labios están más hidratados y se ven increíbles."},
+    {n:"Poppy L.", s:"rhode vanilla", t:"huele increíble y es súper glossy", b:"Fórmula que no pega, huele de maravilla y es MUY hidratante."},
+    {n:"Amaya K.", s:"strawberry glaze", t:"10/10", b:"¡Lo recomiendo! Me encanta el olor, deja los labios hidratados y jugosos."}
+  ];
+
+  const $ = id => document.getElementById(id);
+
+  // TikTok
+  $("ttStrip").innerHTML = TIKTOKS.map(v => `
+    <div class="tt">
+      <div class="frame"><iframe src="https://www.tiktok.com/player/v1/${v.id}?music_info=0&description=0&rel=0&controls=1&progress_bar=1&play_button=1&volume_control=1&fullscreen_button=1" loading="lazy" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="TikTok de @${v.user}"></iframe></div>
+      <a href="https://www.tiktok.com/@${v.user}/video/${v.id}" target="_blank" rel="noopener"><b>@${v.user}</b> · ${v.note}</a>
+    </div>`).join("");
+
+  // Reseñas
+  $("reviews").innerHTML = REVIEWS.map(r => `
+    <div class="rv">
+      <div class="top"><span>${r.n} · compra verificada</span><span class="st">★★★★★</span></div>
+      <h4>${r.t}</h4>
+      <p>${r.b}</p>
+      <small>${r.s}</small>
+    </div>`).join("");
+
+  // Carrusel
+  const stage = $("stage");
+  const N = SHADES.length;
+  const items = SHADES.map((s, i) => {
+    const d = document.createElement("div");
+    d.className = "item";
+    d.innerHTML = `<img src="${CDN + s.img}" alt="peptide lip treatment ${s.name}" >`;
+    stage.insertBefore(d, stage.querySelector(".meta"));
+    return d;
+  });
+  // posiciones a lo largo de la diagonal (como la refe): activo centrado y nítido,
+  // siguientes arriba a la derecha pequeños y desenfocados, anterior sale abajo a la derecha
+  const POS = {
+    "-2": {x:40, y:118, s:.38, b:18, o:0},
+    "-1": {x:26, y:66,  s:.55, b:12, o:.7},
+     "0": {x:0,  y:0,   s:1,   b:0,  o:1},
+     "1": {x:24, y:-50, s:.5,  b:7,  o:.95},
+     "2": {x:38, y:-84, s:.34, b:12, o:.7},
+     "3": {x:48, y:-108,s:.25, b:16, o:0}
+  };
+  const apply = (el, p, z) => {
+    el.style.transform = `translate(${p.x}%, ${p.y}%) scale(${p.s})`;
+    el.style.filter = p.b ? `blur(${p.b}px)` : "none";
+    el.style.opacity = p.o;
+    el.style.zIndex = z;
+  };
+  const rel = (i, c) => { let d = ((i - c) % N + N) % N; if (d > 2) d -= N; return d; };
+  let cur = 0, prevD = items.map((_, i) => rel(i, 0));
+
+  function render(dir){
+    items.forEach((el, i) => {
+      const d = rel(i, cur);
+      const jump = Math.abs(d - prevD[i]) > 2;
+      if (jump) {
+        // entra/sale por el extremo sin cruzar el escenario
+        el.style.transition = "none";
+        apply(el, POS[dir > 0 ? "3" : "-2"], 0);
+        el.getBoundingClientRect();
+        el.style.transition = "";
+      }
+      apply(el, POS[String(d)], 5 - Math.abs(d));
+      prevD[i] = d;
+    });
+    const s = SHADES[cur];
+    const meta = $("meta");
+    if (dir === 0) { $("shadeName").textContent = s.name; $("shadeSmell").textContent = s.smell; }
+    else {
+      meta.classList.add("swap");
+      setTimeout(() => { $("shadeName").textContent = s.name; $("shadeSmell").textContent = s.smell; meta.classList.remove("swap"); }, 380);
+    }
+    $("infoSmell").textContent = s.smell;
+    $("inci").textContent = BASE_INCI + s.inci + ". *Ingrediente de cultivo ecológico certificado.";
+    $("count").textContent = String(cur + 1).padStart(2, "0") + " / " + String(N).padStart(2, "0");
+    $("stickyImg").src = CDN + s.img;
+    $("stickyName").textContent = s.name + " · " + PRICE;
+    const url = "https://www.rhodeskin.com/products/" + s.url;
+    $("buy").href = url; $("stickyBuy").href = url;
+    document.querySelectorAll(".sw").forEach((b, i) => b.setAttribute("aria-pressed", i === cur));
+  }
+  function go(i){ if (i === cur) return; const dir = rel(i, cur) > 0 ? 1 : -1; cur = (i + N) % N; render(dir); }
+
+  $("swatches").innerHTML = SHADES.map(s => `<button class="sw" type="button"><span class="dot" style="background:${s.dot}"></span>${s.name.replace("rhode ", "").replace(" slice","").replace(" glaze","")}</button>`).join("");
+  document.querySelectorAll(".sw").forEach((b, i) => b.addEventListener("click", () => go(i)));
+  $("next").addEventListener("click", () => go(cur + 1));
+  $("prev").addEventListener("click", () => go(cur - 1));
+  let sx = null, sy = null;
+  stage.addEventListener("touchstart", e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
+  stage.addEventListener("touchend", e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(cur + (dx < 0 ? 1 : -1));
+    sx = null;
+  });
+  $("price").textContent = PRICE;
+  render(0);
+
+  // sticky CTA
+  const sticky = $("sticky");
+  let pastHero = false, atShop = false;
+  const upd = () => sticky.classList.toggle("on", pastHero && !atShop);
+  new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; upd(); }).observe(document.querySelector(".hero"));
+  new IntersectionObserver(([e]) => { atShop = e.isIntersecting; upd(); }, {threshold:.25}).observe($("comprar"));
+
+  // efectos de scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll(".fx-stagger,.fx-slide,.fx-zoom").forEach(el => io.observe(el));
+  // el clip-path oculta el elemento al observer: se observa su contenedor
+  const ioWipe = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.querySelector(".fx-wipe").classList.add("in"); ioWipe.unobserve(e.target); } }), {threshold:.3});
+  document.querySelectorAll(".fx-wipe").forEach(el => ioWipe.observe(el.parentElement));
+</script>
+</body>
+</html>
