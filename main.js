@@ -158,6 +158,7 @@
     // vídeos: se sueltan los de los otros hilos (el navegador solo decodifica unos pocos a la vez)
     $$('.det video').forEach(v => { if (!on.contains(v)) soltarVideo(v); });
     on.querySelectorAll('img[loading="lazy"]').forEach(i => { i.loading = 'eager'; });
+    requestAnimationFrame(() => on.querySelectorAll('.mosaico').forEach(justificar));
   };
   const soltarVideo = v => { if (!v.getAttribute('src')) return; v.pause(); v.removeAttribute('src'); v.load(); };
   const cargarVideo = v => {
@@ -240,6 +241,52 @@
 
   /* ---------- Vídeos: solo se reproducen si se ven ---------- */
   // cada vídeo se carga al acercarse a la pantalla y se suelta al alejarse: así nunca hay demasiados a la vez
+  // mosaico en filas justificadas: cada fila llega a los dos bordes, así no queda ninguna crea coja.
+  // En móvil, una pieza horizontal ocupa sola su fila y llega al ancho de la pantalla.
+  function justificar(m) {
+    const W = m.clientWidth; if (!W) return;
+    const movil = innerWidth < 600, g = movil ? 8 : 14;
+    m.style.setProperty('--mg', g + 'px');
+    const H = movil ? W * 0.95 : Math.min(W * 0.38, 460);
+    const items = [...m.children].filter(e => e.dataset.ar);
+    const filas = []; let fila = [], suma = 0;
+    const cerrar = () => { if (fila.length) filas.push(fila); fila = []; suma = 0; };
+    items.forEach(it => {
+      const ar = +it.dataset.ar;
+      if (ar > 1.3) { cerrar(); filas.push([it]); return; }
+      fila.push(it); suma += ar;
+      if (suma * H + g * (fila.length - 1) >= W) cerrar();
+    });
+    if (fila.length) {
+      const h = (W - g * (fila.length - 1)) / suma;
+      if (h > H * 1.4 && filas.length && filas[filas.length - 1].length > 0 && +filas[filas.length - 1][0].dataset.ar <= 1.3) filas[filas.length - 1].push(...fila);
+      else filas.push(fila);
+    }
+    filas.forEach(f => {
+      const ars = f.map(e => +e.dataset.ar), tot = ars.reduce((a, b) => a + b, 0);
+      const h = Math.floor((W - g * (f.length - 1)) / tot);
+      let usado = 0;
+      f.forEach((e, i) => {
+        const w = i === f.length - 1 ? W - g * (f.length - 1) - usado : Math.floor(h * ars[i]);
+        usado += w;
+        e.style.width = w + 'px'; e.style.height = h + 'px'; e.style.marginLeft = ''; e.classList.remove('is-edge');
+      });
+      if (movil && f.length === 1 && ars[0] > 1.3) {
+        const left = m.getBoundingClientRect().left;
+        e0(f[0], left);
+      }
+    });
+    m.classList.add('is-just');
+  }
+  function e0(e, left) {
+    const w = innerWidth;
+    e.style.width = w + 'px'; e.style.height = Math.round(w / +e.dataset.ar) + 'px';
+    e.style.marginLeft = -left + 'px'; e.style.marginRight = -(w - left - e.parentElement.clientWidth) + 'px';
+    e.classList.add('is-edge');
+  }
+  let tJust = 0;
+  addEventListener('resize', () => { clearTimeout(tJust); tJust = setTimeout(() => $$('.det.is-on .mosaico').forEach(justificar), 150); });
+
   const vNear = new IntersectionObserver(entries => entries.forEach(({ target: v, isIntersecting }) => {
     if (isIntersecting) { if (!v.getAttribute('src')) { v.src = v.dataset.src; v.load(); } }
     else if (v.getAttribute('src')) { v.pause(); v.removeAttribute('src'); v.load(); }
