@@ -239,6 +239,60 @@
     setPos(100);
   }));
 
+  // preview de copy en la tarjeta de Estrategia y copy
+  $$('.minicopy').forEach(mc => {
+    const r = mc.querySelector('.minicopy__range');
+    r.addEventListener('input', () => mc.style.setProperty('--pos', r.value + '%'));
+  });
+
+  /* ---------- Visor a pantalla completa de creas y vídeos ---------- */
+  const lupa = $('.lupa'), lStage = $('.lupa__stage');
+  let lItems = [], lIdx = 0, lBack = null;
+  const lPintar = () => {
+    const f = lItems[lIdx], v = f.querySelector('video'), im = f.querySelector('img');
+    lStage.innerHTML = '';
+    if (v) {
+      const nv = document.createElement('video');
+      nv.src = v.dataset.src; nv.poster = v.getAttribute('poster') || ''; nv.controls = true; nv.playsInline = true; nv.loop = true; nv.autoplay = true;
+      lStage.appendChild(nv); nv.play().catch(() => { nv.muted = true; nv.play().catch(() => {}); });
+    } else {
+      const ni = document.createElement('img'); ni.src = im.currentSrc || im.src; ni.alt = im.alt; lStage.appendChild(ni);
+    }
+    const varios = lItems.length > 1;
+    $$('.lupa__nav').forEach(b => { b.hidden = !varios; });
+  };
+  const lAbrir = f => {
+    lItems = [...f.closest('.mosaico').querySelectorAll('.pin')];
+    lItems.sort((a, b) => f.closest('.mosaico')._orden ? f.closest('.mosaico')._orden.indexOf(a) - f.closest('.mosaico')._orden.indexOf(b) : 0);
+    lIdx = lItems.indexOf(f); lBack = f;
+    $$('.det video').forEach(v => v.pause());
+    lupa.hidden = false; lPintar();
+    $('.lupa__cerrar').focus({ preventScroll: true });
+  };
+  const lCerrar = () => {
+    lStage.innerHTML = ''; lupa.hidden = true; lBack?.focus?.({ preventScroll: true });
+    if (!reduce) $$('.det video').forEach(v => { if (v.dataset.vis && v.getAttribute('src')) v.play().catch(() => {}); });
+  };
+  const lMover = d => { lIdx = (lIdx + d + lItems.length) % lItems.length; lPintar(); };
+  document.addEventListener('click', e => {
+    const f = e.target.closest('.mosaico .pin');
+    if (!f || e.target.closest('.ad__sound')) return;
+    lAbrir(f);
+  });
+  $('.lupa__cerrar').addEventListener('click', lCerrar);
+  $('.lupa__prev').addEventListener('click', () => lMover(-1));
+  $('.lupa__next').addEventListener('click', () => lMover(1));
+  lupa.addEventListener('click', e => { if (e.target === lupa || e.target === lStage) lCerrar(); });
+  addEventListener('keydown', e => {
+    if (lupa.hidden) return;
+    if (e.key === 'Escape') { e.stopImmediatePropagation(); lCerrar(); }
+    if (e.key === 'ArrowLeft') lMover(-1);
+    if (e.key === 'ArrowRight') lMover(1);
+  }, true);
+  let lx = null;
+  lStage.addEventListener('touchstart', e => { lx = e.touches[0].clientX; }, { passive: true });
+  lStage.addEventListener('touchend', e => { if (lx === null) return; const dx = e.changedTouches[0].clientX - lx; if (Math.abs(dx) > 50) lMover(dx < 0 ? 1 : -1); lx = null; });
+
   /* ---------- Vídeos: solo se reproducen si se ven ---------- */
   // cada vídeo se carga al acercarse a la pantalla y se suelta al alejarse: así nunca hay demasiados a la vez
   // mosaico en filas justificadas: cada fila llega a los dos bordes, así no queda ninguna crea coja.
@@ -246,6 +300,8 @@
   function justificar(m) {
     const W = m.clientWidth; if (!W) return;
     const movil = innerWidth < 600, g = movil ? 8 : 14;
+    deshacerCols(m);
+    if (movil) return columnas(m, W, g);
     m.style.setProperty('--mg', g + 'px');
     const H = movil ? W * 0.95 : Math.min(W * 0.38, 460);
     const items = [...m.children].filter(e => e.dataset.ar);
@@ -253,7 +309,7 @@
     const cerrar = () => { if (fila.length) filas.push(fila); fila = []; suma = 0; };
     items.forEach(it => {
       const ar = +it.dataset.ar;
-      if (ar > 1.3) { cerrar(); filas.push([it]); return; }
+      
       fila.push(it); suma += ar;
       if (suma * H + g * (fila.length - 1) >= W) cerrar();
     });
@@ -277,6 +333,30 @@
       }
     });
     m.classList.add('is-just');
+  }
+  // móvil: dos columnas tipo Pinterest; cada pieza va a la columna más corta, en orden de lectura.
+  // Una pieza horizontal corta las columnas y ocupa sola el ancho de la pantalla.
+  function deshacerCols(m) {
+    if (!m._orden) m._orden = [...m.children];
+    m.querySelectorAll('.mcols').forEach(c => c.remove());
+    m._orden.forEach(e => { e.style.cssText = e.style.cssText.replace(/(width|height|margin-left|margin-right):[^;]*;?/g, ''); e.classList.remove('is-edge'); m.appendChild(e); });
+    m.classList.remove('is-cols', 'is-just');
+  }
+  function columnas(m, W, g) {
+    m.style.setProperty('--mg', g + 'px');
+    const cw = (W - g) / 2;
+    let par = null, alt = [0, 0];
+    const nuevo = () => { par = document.createElement('div'); par.className = 'mcols'; par.innerHTML = '<div class="mcol"></div><div class="mcol"></div>'; m.appendChild(par); alt = [0, 0]; };
+    m._orden.forEach(e => {
+      const ar = +e.dataset.ar;
+      if (ar > 1.3) { par = null; m.appendChild(e); e0(e, m.getBoundingClientRect().left); return; }
+      if (!par) nuevo();
+      const k = alt[0] <= alt[1] ? 0 : 1;
+      par.children[k].appendChild(e);
+      e.style.height = Math.round(cw / ar) + 'px';
+      alt[k] += cw / ar + g;
+    });
+    m.classList.add('is-cols');
   }
   function e0(e, left) {
     const w = innerWidth;
