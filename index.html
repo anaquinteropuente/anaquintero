@@ -1,344 +1,180 @@
 <!doctype html>
 <html lang="es">
 <head>
-
-
-
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>nudo — Ana Quintero · Estrategia, copy, ads, landings y vídeo</title>
-<meta name="description" content="Estrategia, copy, diseño de ads, landings, generaciones con IA y edición de vídeo para marcas que saben que necesitan más, pero no por dónde empezar.">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="assets/favicon-180.png">
-<link rel="stylesheet" href="styles.css?v=51">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ana Quintero · Creative Strategist Portfolio</title>
+<meta name="description" content="Portfolio de Ana Quintero, creative strategist: AI content, edición de vídeo y paid media creative para Meta y TikTok.">
+<meta name="theme-color" content="#3F0F23">
+<meta property="og:title" content="Ana Quintero · Creative Strategist Portfolio">
+<meta property="og:description" content="AI Content Creator · Video Editor · Paid Media Creative">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/favicon-vinyl-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=VT323&display=swap">
+<link rel="stylesheet" href="styles.css?v=61">
+<noscript><style>.intro,.player{display:none}body.is-intro{overflow:auto}.rv{opacity:1;transform:none}.bar{opacity:1;transform:none}</style></noscript>
 </head>
-<body>
+<body class="is-intro">
 
-<div class="loader" aria-hidden="true">
-  <p class="loader__txt">desenredando<span class="loader__dots"><i>.</i><i>.</i><i>.</i></span></p>
+<!-- ============ INTRO: vinilo ============ -->
+<div class="intro" id="intro" aria-label="Intro: pon la aguja en el vinilo">
+  <div class="deck" id="deck" aria-hidden="true">
+    <img class="deck__photo" draggable="false" src="assets/intro/deck-1200.webp" srcset="assets/intro/deck-1200.webp 1200w, assets/intro/deck-2400.webp 2400w" sizes="(max-width:820px) 140vw, 130vw" alt="" decoding="async" fetchpriority="high">
+    <div class="deck__label" id="label">
+      <svg viewBox="-100 -100 200 200"><defs><path id="ring" d="M-70 0a70 70 0 1 1 140 0a70 70 0 1 1-140 0"/></defs>
+        <circle r="96" fill="none" stroke="#C9D863" stroke-width="1.4" opacity=".9"/>
+        <text font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="700" font-size="10.5" letter-spacing="2" fill="#EAB0C8"><textPath href="#ring" textLength="436" lengthAdjust="spacing">CREATIVE STRATEGIST PORTFOLIO · ANA QUINTERO ·</textPath></text>
+      </svg>
+    </div>
+    <span class="deck__spindle"></span>
+    <img class="deck__arm" id="arm" src="assets/intro/arm-1418.webp" alt="" draggable="false" decoding="async">
+  </div>
+  <div class="intro__veil" id="veil"></div>
+  <p class="intro__hint" id="hint" data-i18n="hint">Pon la aguja para empezar</p>
+  <button type="button" class="intro__skip" id="skip" data-i18n="skip">Saltar intro</button>
+  <button type="button" class="vh" id="playKey">Poner la aguja</button>
 </div>
 
-<div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
-
-<header class="bar">
+<!-- ============ BARRA ============ -->
+<header class="bar" id="bar">
+  <div class="bar__lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-lang="es" aria-pressed="true">ES</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
   <nav class="bar__nav" aria-label="Principal">
-    <a href="#hilos" data-scroll>Hilos</a>
-    <a href="#nudo" data-scroll>Cómo trabajo</a>
-    <a href="#sobre" data-scroll>Sobre mí</a>
-    <a href="#contacto" class="bar__cta" data-scroll data-cursor="hola">Hablemos</a>
-    <button type="button" class="bar__lang" data-lang aria-label="View in English">EN</button>
+    <a href="#trabajo" data-i18n="navWork">Trabajo</a>
+    <a href="#sobre" data-i18n="navAbout">Sobre mí</a>
+    <a href="#contacto" class="bar__cta" data-i18n="navContact">Contacto</a>
+    <button type="button" class="bar__sound" id="soundBtn" aria-pressed="true" aria-label="Sonido activado"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
   </nav>
-  <div class="bar__progress" aria-hidden="true"><span></span></div>
 </header>
 
-<main id="top">
-  <!-- Hilo conductor: recorre toda la web por detrás -->
-  <canvas class="hilo-canvas" aria-hidden="true"></canvas>
-  <svg class="hilo-measure" aria-hidden="true" width="0" height="0"><path/></svg>
+<main id="top" class="site" aria-hidden="true">
 
-  <!-- HERO -->
+  <!-- ===== HERO ===== -->
   <section class="hero" aria-label="Inicio">
-    <div class="hero__sticky">
-      <canvas id="ovillo" aria-hidden="true"></canvas>
-      <div class="hero__fallback" aria-hidden="true"></div>
-      <div class="hero__copy">
-        <h1 class="hero__title">
-          <span class="line"><span>Del anuncio</span></span>
-          <span class="line"><span>a la conversión,</span></span>
-          <span class="line"><span>sin perder el <em>hilo.</em></span></span>
-        </h1>
-        <p class="hero__sub">Estrategia, copy, diseño de ads, landings y vídeo para marcas que saben que necesitan más, pero no por dónde empezar.</p>
-      </div>
-      <div class="hero__hint" aria-hidden="true"><div class="hero__hint-in"><span>Tira del hilo</span><span class="hero__hint-line"></span></div></div>
+    <div class="hero__copy">
+      <h1 class="hero__title">
+        <span class="line"><span>Creative Strategist</span></span>
+        <span class="line"><span>Portfolio</span></span>
+      </h1>
+      <ul class="hero__roles">
+        <li>AI Content Creator</li>
+        <li>Video Editor</li>
+        <li>Paid Media Creative</li>
+      </ul>
     </div>
+    <div class="fan" id="fan" aria-label="Algunos proyectos"></div>
   </section>
 
-  <!-- La historia del ovillo -->
-  <section class="manifiesto" aria-label="La idea">
-    <div class="manifiesto__pin">
-      <p class="manifiesto__text" data-words><span class="m-a">Cada producto empieza siendo un ovillo enredado.</span> <span class="m-b">Si tiras de los diferentes hilos, tu producto funciona.</span></p>
-    </div>
-  </section>
+  <!-- ===== TRABAJO (se genera desde main.js) ===== -->
+  <div id="trabajo"></div>
 
-  <!-- Los 5 hilos -->
-  <section class="hilos" id="hilos" aria-label="Servicios">
-    <div class="hilos__pin">
-      <div class="hilos__head">
-        <h2 class="h2">Elige<br>tu hilo.</h2>
-        <p class="lead">Cada uno resuelve una parte. Pulsa el que te interese para ver cómo lo trabajo y algunos ejemplos.</p>
-      </div>
-      <div class="hilos__track">
-
-        <article class="hilo" style="--c: var(--chicle)">
-          <div class="hilo__media hilo__media--copy"><div class="minicopy" style="--pos:50%" data-cursor="arrastra"><div class="minicopy__a"><span class="minicopy__lbl">Antes</span><p>Soluciones innovadoras para optimizar la gestión de tu negocio.</p></div><div class="minicopy__b"><span class="minicopy__lbl">Después</span><p>Cierra el mes en dos horas, no en dos días.</p></div><input type="range" min="0" max="100" value="50" class="minicopy__range" aria-label="Comparar antes y después"><span class="minicopy__handle" aria-hidden="true"></span></div></div>
-          <div class="hilo__body">
-            <span class="hilo__n">01 / 05</span>
-            <h3>Estrategia y copy</h3>
-            <button class="hilo__btn" data-open="1" data-cursor="tira">Tirar del hilo <span aria-hidden="true">→</span></button>
-          </div>
-        </article>
-
-        <article class="hilo" style="--c: var(--montura)">
-          <div class="hilo__media"><img src="assets/creas/olistic-que-pasa.jpg" alt="Anuncio de Olistic: ¿qué pasa si tomo Olistic?" loading="lazy"></div>
-          <div class="hilo__body">
-            <span class="hilo__n">02 / 05</span>
-            <h3>Diseño de ads</h3>
-            <button class="hilo__btn" data-open="2" data-cursor="tira">Tirar del hilo <span aria-hidden="true">→</span></button>
-          </div>
-        </article>
-
-        <article class="hilo" style="--c: var(--marino)">
-          <div class="hilo__media"><img src="landings/rhode/img/hero-1.jpg" alt="Landing de rhode" loading="lazy"></div>
-          <div class="hilo__body">
-            <span class="hilo__n">03 / 05</span>
-            <h3>Landings</h3>
-            <button class="hilo__btn" data-open="3" data-cursor="tira">Tirar del hilo <span aria-hidden="true">→</span></button>
-          </div>
-        </article>
-
-        <article class="hilo" style="--c: var(--chicle)">
-          <div class="hilo__media"><img src="assets/rare/rare-contraluz.jpg" alt="Dos manos a contraluz alrededor del perfume Rare" loading="lazy"></div>
-          <div class="hilo__body">
-            <span class="hilo__n">04 / 05</span>
-            <h3>Generaciones<br>con IA</h3>
-            <button class="hilo__btn" data-open="4" data-cursor="tira">Tirar del hilo <span aria-hidden="true">→</span></button>
-          </div>
-        </article>
-
-        <article class="hilo" style="--c: var(--montura)">
-          <div class="hilo__media"><img src="assets/video/plastilina-eng.jpg" alt="Vídeo de plastilina en inglés" loading="lazy"></div>
-          <div class="hilo__body">
-            <span class="hilo__n">05 / 05</span>
-            <h3>Edición de vídeo</h3>
-            <button class="hilo__btn" data-open="5" data-cursor="tira">Tirar del hilo <span aria-hidden="true">→</span></button>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Del hilo al nudo -->
-  <section class="proceso" id="nudo" aria-label="Cómo trabajo">
-    <div class="proceso__pin">
-      <div class="proceso__left">
-        <h2 class="h2">Del hilo<br>al nudo.</h2>
-      </div>
-      <ol class="steps">
-        <li class="step"><span class="step__n">01</span><h3>Tiro del hilo</h3><p>Una llamada para entender tu negocio, a quién vendes y qué está fallando. Sin formularios de veinte preguntas.</p></li>
-        <li class="step"><span class="step__n">02</span><h3>Desenredo</h3><p>Te propongo por dónde empezar y por qué. Un plan concreto, con piezas y plazos. No un PDF de cuarenta páginas.</p></li>
-        <li class="step"><span class="step__n">03</span><h3>Hago el nudo</h3><p>Entrego todo listo para usar y lo ajustamos hasta que funcione.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- Sobre mí -->
-  <section class="sobre" id="sobre" aria-label="Sobre mí">
-    <h2 class="h2 reveal sobre__title">Detrás<br>de nudo.</h2>
+  <!-- ===== SOBRE MÍ ===== -->
+  <section class="sobre" id="sobre" aria-labelledby="sobre-t">
+    <h2 class="sobre__title rv" id="sobre-t" data-i18n="aboutT">Sobre mí</h2>
     <div class="sobre__copy">
-      <p class="reveal sobre__lead">Ana, creative strategist.</p>
-      <p class="reveal">Trabajo entre la estrategia y la ejecución: pienso el mensaje, lo escribo, lo diseño y lo produzco. Menos intermediarios, menos briefings que se pierden por el camino y más coherencia entre lo que dices y cómo se ve.</p>
-      <p class="reveal">Puedes empezar por un hilo suelto o encargarme el ovillo entero.</p>
-      <div class="tools reveal"><span class="tools__label">Trabajo con</span><ul><li>Figma</li><li>Magnific</li><li>Higgsfield</li><li>ElevenLabs</li><li>HeyGen</li><li>Blender</li><li>CapCut</li><li>Premiere</li><li>Slack</li><li>Meet</li><li>Claude</li></ul></div>
-    </div>
-  </section>
-
-  <!-- Contacto -->
-  <section class="contacto" id="contacto" aria-label="Contacto">
-    <h2 class="contacto__title">
-      <span class="line"><span>¿Por qué hilo</span></span>
-      <span class="line"><span>empezamos?</span></span>
-    </h2>
-    <p class="contacto__lead">Cuéntame qué tienes entre manos.</p>
-    <div class="peek">
-      <div class="peek__back"><img src="assets/avatar/asomada.webp" alt="Avatar de fieltro de Ana asomándose por encima de la barra"></div>
-      <div class="peek__bar">
-        <div class="peek__hands" aria-hidden="true"><img src="assets/avatar/asomada.webp" alt=""></div>
-        <div class="contacto__actions">
-          <a class="btn btn--primary" href="mailto:puentequinteroana@gmail.com" data-email="puentequinteroana@gmail.com" data-cursor="escríbeme"><span>Hablar por email</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <button class="btn btn--ghost" data-copy-email type="button">Copiar email</button>
-          <a class="btn btn--ghost" href="https://www.linkedin.com/in/quinteroana" target="_blank" rel="noopener" data-cursor="linkedin">LinkedIn ↗</a>
-        </div>
-        <p class="peek__foot">© 2026 nudo · Ana Quintero</p>
+      <p class="sobre__lead rv">Ana, creative strategist.</p>
+      <p class="rv" data-i18n="aboutP">Trabajo entre la estrategia y la ejecución: pienso el mensaje, lo escribo, lo diseño y lo produzco. Menos intermediarios, menos briefings que se pierden por el camino y más coherencia entre lo que dices y cómo se ve.</p>
+      <div class="tools rv">
+        <span class="tools__label" data-i18n="tools">Trabajo con</span>
+        <ul><li>Figma</li><li>Magnific</li><li>Higgsfield</li><li>ElevenLabs</li><li>HeyGen</li><li>Blender</li><li>CapCut</li><li>Premiere</li><li>Slack</li><li>Meet</li><li>Claude</li></ul>
       </div>
     </div>
   </section>
+
+  <!-- ===== CONTACTO: móvil ===== -->
+  <section class="contacto" id="contacto" aria-labelledby="contacto-t">
+    <div class="contacto__copy">
+      <p class="contacto__n" id="contacto-t">Bonus track</p>
+      <p class="contacto__sub" data-i18n="contactSub">Cuéntame qué tienes entre manos.</p>
+      <p class="contacto__mail">puentequinteroana@gmail.com</p>
+    </div>
+    <div class="phone-wrap" id="phoneWrap">
+      <div class="phone" id="phone">
+        <span class="phone__side" aria-hidden="true"></span>
+        <div class="phone__face">
+          <span class="phone__speaker" aria-hidden="true"></span>
+          <div class="phone__bezel">
+            <div class="lcd" id="lcd">
+              <div class="lcd__status" aria-hidden="true">
+                <span class="lcd__signal"><i></i><i></i><i></i><i></i></span>
+                <span class="lcd__title" id="lcdTitle" data-i18n="lcdTitle">Contacto</span>
+                <span class="lcd__bat"><i></i><i></i><i></i></span>
+              </div>
+              <ul class="lcd__menu" id="lcdMenu" role="menu" aria-label="Opciones de contacto">
+                <li role="none"><a role="menuitem" href="mailto:puentequinteroana@gmail.com" data-i="0" data-i18n="mWrite">Escribir email</a></li>
+                <li role="none"><button role="menuitem" type="button" data-i="1" data-i18n="mCopy">Copiar email</button></li>
+                <li role="none"><a role="menuitem" href="https://www.linkedin.com/in/quinteroana" target="_blank" rel="noopener" data-i="2">LinkedIn</a></li>
+              </ul>
+              <p class="lcd__msg" id="lcdMsg" aria-live="polite"></p>
+              <div class="lcd__soft" aria-hidden="true"><span data-i18n="soft1">Elegir</span><span data-i18n="soft2">Bajar</span></div>
+              <span class="lcd__glass" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="phone__ctrl">
+            <button type="button" class="soft" id="softL" aria-label="Elegir opción"></button>
+            <div class="navkey">
+              <button type="button" id="navUp" aria-label="Subir"><svg viewBox="0 0 12 8"><path d="M1 7 6 2l5 5"/></svg></button>
+              <button type="button" id="navDown" aria-label="Bajar"><svg viewBox="0 0 12 8"><path d="M1 1l5 5 5-5"/></svg></button>
+            </div>
+            <button type="button" class="soft" id="softR" aria-label="Bajar opción"></button>
+          </div>
+          <div class="phone__keys" id="keys">
+            <button type="button" data-k="1">1<small>&nbsp;</small></button><button type="button" data-k="2">2<small>abc</small></button><button type="button" data-k="3">3<small>def</small></button>
+            <button type="button" data-k="4">4<small>ghi</small></button><button type="button" data-k="5">5<small>jkl</small></button><button type="button" data-k="6">6<small>mno</small></button>
+            <button type="button" data-k="7">7<small>pqrs</small></button><button type="button" data-k="8">8<small>tuv</small></button><button type="button" data-k="9">9<small>wxyz</small></button>
+            <button type="button" data-k="*">*<small>&nbsp;</small></button><button type="button" data-k="0">0<small>&nbsp;</small></button><button type="button" data-k="#">#<small>&nbsp;</small></button>
+          </div>
+          <span class="phone__mic" aria-hidden="true"></span>
+        </div>
+      </div>
+      <span class="phone-shadow" aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <footer class="foot"><p>© 2026 Ana Quintero</p><p>Creative Strategist Portfolio</p></footer>
+
 </main>
 
-
-<!-- Detalle de cada hilo: pantalla completa -->
-<div class="detalle" role="dialog" aria-modal="true" aria-labelledby="detalle-title" hidden data-lenis-prevent>
-  <div class="detalle__bar">
-    <span class="detalle__n" data-detalle-n>01 / 05</span>
-    <div class="detalle__nav">
-      <button class="detalle__prev" data-detalle-step="-1" aria-label="Hilo anterior">←</button>
-      <button class="detalle__next" data-detalle-step="1" aria-label="Hilo siguiente">→</button>
-      <button class="detalle__close" data-close aria-label="Cerrar">Cerrar <span aria-hidden="true">✕</span></button>
-    </div>
+<!-- ============ AHORA SUENA ============ -->
+<div class="player" id="player" aria-label="Ahora suena">
+  <span class="player__disc" aria-hidden="true"></span>
+  <div class="player__info">
+    <span class="player__k" data-i18n="nowPlaying">Ahora suena</span>
+    <span class="player__t" id="playerT">01 · Diseño de ads</span>
   </div>
-
-  <!-- 01 Estrategia y copy -->
-  <article class="det" data-det="1" style="--c: var(--chicle)">
-    <header class="det__head">
-      <h2 class="det__title" id="detalle-title">Estrategia y copy</h2>
-      <ul class="det__list"><li>Análisis de ICP</li><li>Mapa de objeciones</li><li>Ángulos para ads</li><li>Copy para paid</li><li>Contenido orgánico</li></ul>
-    </header>
-    <div class="det__block">
-      <div class="det__label"><b>Un producto, tres ángulos</b><span class="tag">Ejemplo · marca ficticia</span></div>
-      <div class="icp">
-        <div class="icp__card">
-          <div class="icp__top"><span class="icp__avatar" aria-hidden="true">L</span><div><b>Lucía, 34</b><span>Madrid · trabaja en remoto</span></div></div>
-          <dl>
-            <div><dt>Quiere</dt><dd>Cuidarse la piel sin una rutina de diez pasos.</dd></div>
-            <div><dt>Le frena</dt><dd>Ha probado mil cosas y desconfía de las promesas.</dd></div>
-            <div><dt>Compra cuando</dt><dd>Ve resultados reales en alguien como ella.</dd></div>
-          </dl>
-          <p class="icp__brand">Sérum de rutina corta · marca ficticia</p>
-        </div>
-        <div class="icp__angles">
-          <p class="icp__label">Ángulos</p>
-          <div class="chips" role="tablist">
-            <button class="chip is-on" role="tab" aria-selected="true" data-angle="0">Tiempo</button>
-            <button class="chip" role="tab" aria-selected="false" data-angle="1">Desconfianza</button>
-            <button class="chip" role="tab" aria-selected="false" data-angle="2">Prueba social</button>
-          </div>
-          <p class="icp__headline" aria-live="polite">Tu rutina, en un solo paso.</p>
-        </div>
-      </div>
-    </div>
-    <div class="det__block">
-      <div class="det__label"><b>Antes y después</b><span class="tag">Ejemplos</span></div>
-      <div class="copybox">
-        <div class="copybox__tabs" role="tablist">
-          <button class="is-on" data-copy="0">Titular web</button>
-          <button data-copy="1">Anuncio</button>
-          <button data-copy="2">Post orgánico</button>
-        </div>
-        <div class="copybox__stage" data-cursor="arrastra">
-          <div class="copybox__before"><span class="copybox__lbl">Antes</span><p data-before>Soluciones innovadoras para optimizar la gestión de tu negocio.</p></div>
-          <div class="copybox__after"><span class="copybox__lbl">Después</span><p data-after>Cierra el mes en dos horas, no en dos días.</p></div>
-          <input type="range" min="0" max="100" value="100" class="copybox__range" aria-label="Comparar antes y después">
-          <span class="copybox__handle" aria-hidden="true"></span>
-          <span class="copybox__hint" aria-hidden="true">Desliza para ver el después</span>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- 02 Diseño de ads -->
-  <article class="det" data-det="2" style="--c: var(--montura)">
-    <header class="det__head">
-      <h2 class="det__title">Diseño de ads</h2>
-    </header>
-    <div class="det__block">
-      <div class="mosaico">
-        <figure class="pin" data-ar="1.0000"><img src="assets/creas/olistic-vision-board.jpg" width="1200" height="1200" alt="Anuncio de Olistic: si has puesto tener pelazo en tu Vision Board, Olistic Women es para ti" loading="lazy"></figure>
-        <figure class="pin" data-ar="0.8000"><img src="assets/creas/tuzona-foco.jpg" width="1080" height="1350" alt="Anuncio de tuzona: un coche amarillo iluminado por un foco entre coches grises. Aparca a la primera mientras el resto sigue conduciendo" loading="lazy"></figure>
-        <figure class="pin" data-ar="0.8000"><img src="assets/creas/elha-baloncesto.jpg" width="960" height="1200" alt="Anuncio de elha laser center: ¿juegas al baloncesto? Primera sesión láser gratis" loading="lazy"></figure>
-        <figure class="pin" data-ar="1.0000"><img src="assets/creas/olistic-que-pasa.jpg" width="1080" height="1080" alt="Anuncio de Olistic: ¿qué pasa si tomo Olistic? Mayor brillo, densidad, fortaleza y menos caída" loading="lazy"></figure>
-        <figure class="pin" data-ar="1.0000"><img src="assets/creas/olistic-tinte.jpg" width="1200" height="1200" alt="Anuncio de Olistic: ¿el tinte hizo que perdieras densidad en tu cabello?" loading="lazy"></figure>
-        <figure class="pin" data-ar="0.8000"><img src="assets/creas/tuzona-alien.jpg" width="1080" height="1350" alt="Anuncio de tuzona: la mascota señala el móvil con la app. Aparca en Madrid sin dar vueltas" loading="lazy"></figure>
-        <figure class="pin" data-ar="0.8000"><img src="assets/creas/dehesa-golf.jpg" width="960" height="1200" alt="Anuncio de La Dehesa Club de Golf: una pelota y un peluche en el hoyo. El único sitio donde no escucharás «Mamá, vámonos ya»" loading="lazy"></figure>
-        <figure class="pin" data-ar="1.0000"><img src="assets/creas/olistic-gracias.jpg" width="1080" height="1080" alt="Anuncio de Olistic: caída capilar, pelo seco, falta de brillo, uñas débiles y poca densidad tachados. Gracias a Olistic Women" loading="lazy"></figure>
-        <figure class="pin" data-ar="1.0000"><img src="assets/creas/olistic-3.jpg" width="1200" height="1200" alt="Anuncio de Olistic: además de mejorar tu pelo, aporta energía, refuerza la inmunidad y mejora tu piel" loading="lazy"></figure>
-        <figure class="pin" data-ar="0.8000"><img src="assets/creas/elha-2.jpg" width="960" height="1200" alt="Anuncio de elha laser center: esto y que el vello no te moleste. Depilarme gratis" loading="lazy"></figure>
-        <figure class="pin" data-ar="1.0000"><img src="assets/creas/olistic-ayuda.jpg" width="1080" height="1080" alt="Anuncio de Olistic: te ayuda a tener pelazo, pero también reduce el estrés, apoya el sistema inmune, fortalece las uñas y nutre la piel" loading="lazy"></figure>
-        <figure class="pin" data-ar="0.8000"><img src="assets/creas/tuzona-cenital.jpg" width="1080" height="1350" alt="Anuncio de tuzona: vista cenital de un aparcamiento con un hueco señalado. Madrid es terrible para conducir. ¿Y para aparcar?" loading="lazy"></figure>
-        <figure class="pin" data-ar="1.0000"><img src="assets/creas/olistic-4.jpg" width="1200" height="1200" alt="Anuncio de Olistic: ¿tu peluquera cortó demasiado?" loading="lazy"></figure>
-      </div>
-    </div>
-  </article>
-
-  <!-- 03 Landings -->
-  <article class="det" data-det="3" style="--c: var(--marino)">
-    <header class="det__head">
-      <h2 class="det__title">Landings</h2>
-      <ul class="det__list"><li>Estructura y wireframe</li><li>Diseño</li><li>Montaje responsive</li><li>Variantes A/B</li></ul>
-    </header>
-    <div class="det__block">
-      <div class="det__label"><b>Páginas</b><span class="tag tag--solid">Trabajo real</span></div>
-      <div class="browsers browsers--live">
-        <figure class="browser browser--live"><div class="browser__bar"><i></i><i></i><i></i><span>tuzona · landing</span></div><div class="browser__view"><iframe data-src="landings/tuzona/index.html" title="Landing de tuzona" tabindex="-1" aria-hidden="true"></iframe></div><figcaption><span>tuzona · Landing de conversión</span><span class="ver"><button type="button" data-ver="landings/tuzona/index.html" data-titulo="tuzona · Landing de conversión" data-modo="desktop">Escritorio</button><button type="button" data-ver="landings/tuzona/index.html" data-titulo="tuzona · Landing de conversión" data-modo="mobile">Móvil</button></span></figcaption></figure>
-        <figure class="browser browser--live"><div class="browser__bar"><i></i><i></i><i></i><span>preply · cursos de inglés para empresas</span></div><div class="browser__view"><iframe data-src="landings/preply/index.html" title="Landing de Preply" tabindex="-1" aria-hidden="true"></iframe></div><figcaption><span>Preply · Landing B2B</span><span class="ver"><button type="button" data-ver="landings/preply/index.html" data-titulo="Preply · Landing B2B" data-modo="desktop">Escritorio</button><button type="button" data-ver="landings/preply/index.html" data-titulo="Preply · Landing B2B" data-modo="mobile">Móvil</button></span></figcaption></figure>
-        <figure class="browser browser--live"><div class="browser__bar"><i></i><i></i><i></i><span>rhode · peptide lip treatment</span></div><div class="browser__view"><iframe data-src="landings/rhode/index.html" title="Landing de rhode" tabindex="-1" aria-hidden="true"></iframe></div><figcaption><span>rhode · proyecto personal</span><span class="ver"><button type="button" data-ver="landings/rhode/index.html" data-titulo="rhode · proyecto personal" data-modo="desktop">Escritorio</button><button type="button" data-ver="landings/rhode/index.html" data-titulo="rhode · proyecto personal" data-modo="mobile">Móvil</button></span></figcaption></figure>
-      </div>
-    </div>
-  </article>
-
-  <!-- 04 Generaciones con IA -->
-  <article class="det" data-det="4" style="--c: var(--chicle)">
-    <header class="det__head">
-      <h2 class="det__title">Generaciones<br>con IA</h2>
-      <ul class="det__list"><li>Imagen de producto</li><li>Imagen de campaña</li><li>Personajes y mundos propios</li><li>Clips de vídeo</li></ul>
-    </header>
-    <div class="det__block">
-      <div class="mosaico">
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/xcape-bate.jpg?v=51" data-src="assets/video/xcape-bate.mp4?v=51" style="aspect-ratio:9/16" aria-label="Vídeo de Xcape: dos chicos y un bate"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin" data-ar="1.0000"><img src="assets/rare/rare-marmol.jpg" width="1400" height="1400" alt="Perfume Rare sobre una bandeja dorada y mármol rosa" loading="lazy"></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/mogu-empleado.jpg?v=51" data-src="assets/video/mogu-empleado.mp4?v=51" style="aspect-ratio:9/16" aria-label="Vídeo de Mogu: el empleado del mes en una oficina"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin" data-ar="0.5575"><img src="assets/felt/sofa.jpg" width="669" height="1200" alt="Escena de fieltro: sofá" loading="lazy"></figure>
-        <figure class="pin" data-ar="0.7500"><img src="assets/rare/rare-manos.jpg" width="1125" height="1500" alt="Tres manos sostienen el perfume Rare" loading="lazy"></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/tuzona-huecos.jpg?v=51" data-src="assets/video/tuzona-huecos.mp4?v=51" style="aspect-ratio:9/16" aria-label="Vídeo de tuzona: hay huecos"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin" data-ar="0.7500"><img src="assets/rare/rare-ojos.jpg" width="1125" height="1500" alt="Modelo tumbada riendo con dos frascos de Rare sobre los ojos" loading="lazy"></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/travel-museo.jpg?v=51" data-src="assets/video/travel-museo.mp4?v=51" style="aspect-ratio:9/16" aria-label="Vídeo animado de una agencia de viajes: un agente rodeado de pantallas y post-its"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin" data-ar="0.5575"><img src="assets/felt/mirror.jpg" width="669" height="1200" alt="Escena de fieltro: espejo" loading="lazy"></figure>
-        <figure class="pin pin--video" data-ar="0.7509"><video muted loop playsinline preload="none" poster="assets/video/rare-perfume.jpg?v=51" data-src="assets/video/rare-perfume.mp4?v=51" style="aspect-ratio:832/1108" aria-label="Perfume Rare con un brillo cálido de fondo"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin" data-ar="0.7500"><img src="assets/rare/rare-contraluz.jpg" width="1125" height="1500" alt="Dos manos a contraluz alrededor del perfume Rare" loading="lazy"></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/ugc-storytime.jpg?v=51" data-src="assets/video/ugc-storytime.mp4?v=51" style="aspect-ratio:9/16" aria-label="Vídeo UGC: una chica cuenta su historia a cámara"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/avatar-anuncios.jpg?v=51" data-src="assets/video/avatar-anuncios.mp4?v=51" style="aspect-ratio:9/16" aria-label="Mi avatar de fieltro trabaja en el portátil"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin" data-ar="0.7500"><img src="assets/rare/rare-cama.jpg" width="1125" height="1500" alt="Modelo sonriendo en la cama con el perfume Rare en la mano" loading="lazy"></figure>
-      </div>
-    </div>
-  </article>
-
-  <!-- 05 Edición de vídeo -->
-  <article class="det" data-det="5" style="--c: var(--montura)">
-    <header class="det__head">
-      <h2 class="det__title">Edición de vídeo</h2>
-      <ul class="det__list"><li>Reels y TikTok</li><li>Vídeo para ads</li><li>Subtítulos</li><li>Versiones por formato</li></ul>
-    </header>
-    <div class="det__block">
-      <div class="mosaico">
-        <figure class="pin pin--video" data-ar="1.7778"><video muted loop playsinline preload="none" poster="assets/video/mogu.jpg?v=51" data-src="assets/video/mogu.mp4?v=51" style="aspect-ratio:16/9" aria-label="Vídeo de Mogu: pídeselo a Mogu"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/avatar-lista.jpg?v=51" data-src="assets/video/avatar-lista.mp4?v=51" style="aspect-ratio:9/16" aria-label="Mi avatar de fieltro en el sofá, con subtítulos"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/plastilina-eng.jpg?v=51" data-src="assets/video/plastilina-eng.mp4?v=51" style="aspect-ratio:9/16" aria-label="Vídeo de plastilina en inglés"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin pin--video" data-ar="0.8000"><video muted loop playsinline preload="none" poster="assets/video/nn-ahorro.jpg?v=51" data-src="assets/video/nn-ahorro.mp4?v=51" style="aspect-ratio:4/5" aria-label="Vídeo de Nationale-Nederlanden sobre ahorro con garantía"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/creas/tuzona-motion.jpg?v=51" data-src="assets/creas/tuzona-motion.mp4?v=51" style="aspect-ratio:9/16" aria-label="Vídeo de anuncio de tuzona"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin pin--video" data-ar="0.8000"><video muted loop playsinline preload="none" poster="assets/video/hogar-esencial.jpg?v=51" data-src="assets/video/hogar-esencial.mp4?v=51" style="aspect-ratio:4/5" aria-label="Vídeo de Hogar Esencial: contratación online paso a paso"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-        <figure class="pin pin--video" data-ar="0.5625"><video muted loop playsinline preload="none" poster="assets/video/avatar-inventado.jpg?v=51" data-src="assets/video/avatar-inventado.mp4?v=51" style="aspect-ratio:9/16" aria-label="Mi avatar de fieltro cruza un pasillo de láseres"></video><button type="button" class="ad__sound" aria-pressed="false">Activar sonido</button></figure>
-      </div>
-    </div>
-  </article>
-
-  <div class="detalle__foot">
-    <p>¿Te encaja este hilo?</p>
-    <a href="#contacto" class="btn btn--primary" data-close-to="#contacto">Hablemos <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-  </div>
+  <button type="button" class="player__btn" id="prevT" aria-label="Bloque anterior"><svg viewBox="0 0 24 24"><path d="M6 5v14M19 5 9 12l10 7z"/></svg></button>
+  <button type="button" class="player__btn" id="nextT" aria-label="Bloque siguiente"><svg viewBox="0 0 24 24"><path d="M18 5v14M5 5l10 7-10 7z"/></svg></button>
+  <span class="player__bar" aria-hidden="true"><i id="playerBar"></i></span>
 </div>
 
-<div class="lupa" role="dialog" aria-modal="true" aria-label="Ver en grande" hidden>
-  <button type="button" class="lupa__cerrar">Cerrar <span aria-hidden="true">✕</span></button>
-  <button type="button" class="lupa__nav lupa__prev" aria-label="Anterior">←</button>
-  <div class="lupa__stage"></div>
-  <button type="button" class="lupa__nav lupa__next" aria-label="Siguiente">→</button>
+<!-- ============ LUPA ============ -->
+<div class="lupa" id="lupa" role="dialog" aria-modal="true" aria-label="Ver en grande" hidden>
+  <button type="button" class="lupa__close" data-close data-i18n="close">Cerrar</button>
+  <button type="button" class="lupa__nav lupa__nav--prev" data-step="-1" aria-label="Anterior">←</button>
+  <div class="lupa__stage" id="lupaStage"></div>
+  <button type="button" class="lupa__nav lupa__nav--next" data-step="1" aria-label="Siguiente">→</button>
 </div>
-<div class="visor" role="dialog" aria-modal="true" aria-label="Vista de la landing" hidden data-lenis-prevent>
+
+<!-- ============ VISOR LANDINGS ============ -->
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Vista de la landing" hidden>
   <div class="visor__bar">
-    <span class="visor__t"></span>
-    <div class="visor__modos" role="group" aria-label="Tamaño"><button type="button" data-modo="desktop">Escritorio</button><button type="button" data-modo="mobile">Móvil</button></div>
-    <button type="button" class="visor__cerrar">Cerrar <span aria-hidden="true">✕</span></button>
+    <span class="visor__t" id="visorT"></span>
+    <div class="visor__modes" role="group" aria-label="Tamaño">
+      <button type="button" data-mode="desktop" data-i18n="desktop">Escritorio</button>
+      <button type="button" data-mode="mobile" data-i18n="mobile">Móvil</button>
+    </div>
+    <button type="button" class="visor__close" data-close data-i18n="close">Cerrar</button>
   </div>
-  <div class="visor__stage"><div class="visor__marco"><iframe title="Landing a tamaño real"></iframe></div></div>
+  <div class="visor__stage"><div class="visor__frame" id="visorFrame"><iframe title="Landing a tamaño real"></iframe></div></div>
 </div>
 
-<div class="toast" role="status" aria-live="polite"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="i18n.js?v=51"></script>
-<script src="landings/landings.js?v=51"></script>
-<script src="main.js?v=51"></script>
-<script src="hilo2d.js?v=51"></script>
+<script src="main.js?v=61" defer></script>
 </body>
 </html>
