@@ -697,7 +697,7 @@ function initPlayer() {
    ========================================================= */
 function initPhone() {
   const lcd = $('#lcd'), msg = $('#lcdMsg'), items = $$('#lcdMenu [data-i]');
-  const mail = 'puentequinteroana@gmail.com';
+  const mail = 'hola.anaquintero@gmail.com';
   let sel = 0, timer, buf = '', presses = 0;
   const paint = () => items.forEach((el, i) => el.classList.toggle('is-sel', i === sel));
   paint();
@@ -787,7 +787,7 @@ function initMisc() {
 
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', () => { sfx.init(); sfx.tick(); }));
   console.log('%cAna Quintero · Creative Strategist Portfolio', 'font:700 14px Helvetica;color:#EAB0C8;background:#6E1E3B;padding:6px 12px;border-radius:99px');
-  console.log('Si estás mirando el código, ya nos entendemos: puentequinteroana@gmail.com');
+  console.log('Si estás mirando el código, ya nos entendemos: hola.anaquintero@gmail.com');
 }
 
 /* =========================================================
