@@ -466,13 +466,6 @@ body.is-in .fan__strip .fan__card{transition:transform 1.3s var(--ease) var(--d)
 .ba__handle{width:3px;margin-left:-1.5px}
 .ba__handle::after{width:52px;height:52px;margin:-26px 0 0 -26px;box-shadow:0 0 0 6px rgba(201,216,99,.25), 0 8px 20px rgba(20,4,10,.4);background-size:24px}
 .ba__hint{left:50%;right:auto;bottom:18px;transform:translateX(-50%);animation:none}
-/* avatar saludando */
-.sobre{grid-template-areas:"t c" "h c"}
-.hello{position:relative;justify-self:center;width:min(100%,420px);aspect-ratio:.806}
-.hello__src{display:none}
-.hello__cv{width:100%;height:100%;object-fit:contain;display:block}
-@media (max-width:820px){.sobre{grid-template-areas:none}.hello{width:min(86vw,380px)}}
-.hello__cv{-webkit-mask:linear-gradient(180deg,#000 82%,transparent 100%);mask:linear-gradient(180deg,#000 82%,transparent 100%)}
 /* antes / después: cada texto en su mitad para que se lean los dos con el tirador en el centro */
 .ba__before{align-items:flex-end;text-align:right;justify-content:flex-end}
 .ba__before .ba__lbl{align-self:flex-end;order:-1;margin-bottom:auto}
@@ -480,3 +473,4 @@ body.is-in .fan__strip .fan__card{transition:transform 1.3s var(--ease) var(--d)
 .still__cards .ba__side p{font-size:clamp(20px,2.6vw,40px)}
 .ba__hint{bottom:auto;top:calc(50% + 34px)}
 @media (max-width:640px){.still__cards .ba__side p{font-size:clamp(16px,4.6vw,22px)}.still__cards .ba{height:clamp(240px,62vw,300px)}}
+

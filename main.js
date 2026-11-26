@@ -948,35 +948,6 @@ function initServices() {
 }
 
 /* =========================================================
-   AVATAR SALUDANDO: el fondo verde se quita en tiempo real (canvas)
-   ========================================================= */
-function initHello() {
-  const v = $('#helloSrc'), cv = $('#helloCv'); if (!v || !cv) return;
-  const g = cv.getContext('2d', { willReadFrequently: true });
-  let on = false, raf = 0;
-  function frame() {
-    if (!on) return;
-    raf = requestAnimationFrame(frame);
-    if (v.readyState < 2) return;
-    const w = cv.width = v.videoWidth, h = cv.height = v.videoHeight;
-    g.drawImage(v, 0, 0, w, h);
-    const img = g.getImageData(0, 0, w, h), d = img.data;
-    for (let i = 0; i < d.length; i += 4) {
-      const r = d[i], gg = d[i + 1], b = d[i + 2];
-      const k = gg - Math.max(r, b);                 // cuánto "verde" sobra
-      if (k > 40) d[i + 3] = 0;
-      else if (k > 12) { d[i + 3] = 255 * (1 - (k - 12) / 28); d[i + 1] = Math.max(r, b); }   // borde suave sin halo verde
-    }
-    g.putImageData(img, 0, 0);
-  }
-  new IntersectionObserver(es => {
-    on = es[0].isIntersecting;
-    if (on) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); raf = requestAnimationFrame(frame); }
-    else { v.pause(); cancelAnimationFrame(raf); }
-  }, { rootMargin: '200px' }).observe(cv);
-}
-
-/* =========================================================
    AVISO "Desliza para ver más": sale si alguien se queda quieto
    ========================================================= */
 function initMoreHint() {
@@ -1000,7 +971,6 @@ function initMoreHint() {
 applyLang();
 initMoreHint();
 initServices();
-initHello();
 renderBlocks();
 renderFan();
 initPieces();
