@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=VT323&display=swap">
-<link rel="stylesheet" href="styles.css?v=70">
+<link rel="stylesheet" href="styles.css?v=82">
 <noscript><style>.intro,.player{display:none}body.is-intro{overflow:auto}.rv{opacity:1;transform:none}.bar{opacity:1;transform:none}</style></noscript>
 </head>
 <body class="is-intro">
@@ -47,6 +47,7 @@
   <nav class="bar__nav" aria-label="Principal">
     <a href="#trabajo" data-i18n="navWork">Trabajo</a>
     <a href="#sobre" data-i18n="navAbout">Sobre mí</a>
+    <a href="#servicios" data-i18n="navSvc">Servicios</a>
     <a href="#contacto" class="bar__cta" data-i18n="navContact">Contacto</a>
     <button type="button" class="bar__sound" id="soundBtn" aria-pressed="true" aria-label="Sonido activado"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
   </nav>
@@ -84,6 +85,42 @@
         <ul><li>Figma</li><li>Magnific</li><li>Higgsfield</li><li>ElevenLabs</li><li>HeyGen</li><li>Blender</li><li>CapCut</li><li>Premiere</li><li>Slack</li><li>Meet</li><li>Claude</li></ul>
       </div>
     </div>
+    <div class="hello rv" aria-hidden="true">
+      <video class="hello__src" id="helloSrc" muted loop playsinline preload="none" data-src="assets/avatar/hola.mp4"></video>
+      <canvas class="hello__cv" id="helloCv"></canvas>
+    </div>
+  </section>
+
+  <!-- ===== SERVICIOS: trabajemos juntos ===== -->
+  <section class="servicios" id="servicios" aria-labelledby="servicios-t">
+    <div class="servicios__head">
+      <h2 class="servicios__title rv" id="servicios-t" data-i18n="svcT">¿Lo hacemos para tu marca?</h2>
+    </div>
+    <ol class="svc">
+      <li class="svc__i rv">
+        <button type="button" class="svc__t" aria-expanded="false" aria-controls="svc1"><b data-i18n="s1t"></b><span class="svc__plus" aria-hidden="true"></span></button>
+        <div class="svc__body" id="svc1"><div><ul data-svc="1"></ul></div></div>
+      </li>
+      <li class="svc__i rv">
+        <button type="button" class="svc__t" aria-expanded="false" aria-controls="svc2"><b data-i18n="s2t"></b><span class="svc__plus" aria-hidden="true"></span></button>
+        <div class="svc__body" id="svc2"><div><ul data-svc="2"></ul></div></div>
+      </li>
+      <li class="svc__i rv">
+        <button type="button" class="svc__t" aria-expanded="false" aria-controls="svc3"><b data-i18n="s3t"></b><span class="svc__plus" aria-hidden="true"></span></button>
+        <div class="svc__body" id="svc3"><div><ul data-svc="3"></ul></div></div>
+      </li>
+      <li class="svc__i rv">
+        <button type="button" class="svc__t" aria-expanded="false" aria-controls="svc4"><b data-i18n="s4t"></b><span class="svc__plus" aria-hidden="true"></span></button>
+        <div class="svc__body" id="svc4"><div><ul data-svc="4"></ul></div></div>
+      </li>
+      <li class="svc__i rv">
+        <button type="button" class="svc__t" aria-expanded="false" aria-controls="svc5"><b data-i18n="s5t"></b><span class="svc__plus" aria-hidden="true"></span></button>
+        <div class="svc__body" id="svc5"><div><ul data-svc="5"></ul></div></div>
+      </li>
+    </ol>
+    <div class="servicios__cta rv">
+      <a class="btn-hire" id="hireBtn" href="mailto:hola.anaquintero@gmail.com"><span data-i18n="svcBtn">Pedir presupuesto</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
   </section>
 
   <!-- ===== CONTACTO: móvil ===== -->
@@ -91,7 +128,7 @@
     <div class="contacto__copy">
       <p class="contacto__n" id="contacto-t">Bonus track</p>
       <p class="contacto__sub" data-i18n="contactSub">Cuéntame qué tienes entre manos.</p>
-      <p class="contacto__mail">hola.anaquintero@gmail.com</p>
+      <p class="contacto__links"><a class="contacto__mail" href="mailto:hola.anaquintero@gmail.com">hola.anaquintero@gmail.com</a><br><a class="contacto__in" href="https://www.linkedin.com/in/quinteroana" target="_blank" rel="noopener">LinkedIn ↗</a></p>
     </div>
     <div class="phone-wrap" id="phoneWrap">
       <div class="phone" id="phone">
@@ -111,17 +148,17 @@
                 <li role="none"><a role="menuitem" href="https://www.linkedin.com/in/quinteroana" target="_blank" rel="noopener" data-i="2">LinkedIn</a></li>
               </ul>
               <p class="lcd__msg" id="lcdMsg" aria-live="polite"></p>
-              <div class="lcd__soft" aria-hidden="true"><span data-i18n="soft1">Elegir</span><span data-i18n="soft2">Bajar</span></div>
+              <div class="lcd__soft" aria-hidden="true"><span data-i18n="soft1">← Atrás</span><span data-i18n="soft2">OK</span></div>
               <span class="lcd__glass" aria-hidden="true"></span>
             </div>
           </div>
           <div class="phone__ctrl">
-            <button type="button" class="soft" id="softL" aria-label="Elegir opción"></button>
+            <button type="button" class="soft" id="softL" aria-label="Volver"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M6 1 2 5l4 4M2 5h12"/></svg></button>
             <div class="navkey">
               <button type="button" id="navUp" aria-label="Subir"><svg viewBox="0 0 12 8"><path d="M1 7 6 2l5 5"/></svg></button>
               <button type="button" id="navDown" aria-label="Bajar"><svg viewBox="0 0 12 8"><path d="M1 1l5 5 5-5"/></svg></button>
             </div>
-            <button type="button" class="soft" id="softR" aria-label="Bajar opción"></button>
+            <button type="button" class="soft soft--ok" id="softR" aria-label="OK, elegir opción">OK</button>
           </div>
           <div class="phone__keys" id="keys">
             <button type="button" data-k="1">1<small>&nbsp;</small></button><button type="button" data-k="2">2<small>abc</small></button><button type="button" data-k="3">3<small>def</small></button>
@@ -173,8 +210,10 @@
   <div class="visor__stage"><div class="visor__frame" id="visorFrame"><iframe title="Landing a tamaño real"></iframe></div></div>
 </div>
 
+<p class="more" id="more" aria-hidden="true"><span class="more__ico"><i></i></span><span data-i18n="more">Desliza para ver más</span></p>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="main.js?v=70" defer></script>
+<script src="main.js?v=82" defer></script>
 </body>
 </html>

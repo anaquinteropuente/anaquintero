@@ -33,15 +33,44 @@ const STR = {
   contactT: ['¿Hablamos?', 'Let’s talk?'],
   contactSub: ['Cuéntame qué tienes entre manos.', 'Tell me what you’re working on.'],
   lcdTitle: ['Contacto', 'Contact'], mWrite: ['Escribir email', 'Write email'], mCopy: ['Copiar email', 'Copy email'],
-  soft1: ['Elegir', 'Select'], soft2: ['Bajar', 'Down'],
+  soft1: ['← Atrás', '← Back'], soft2: ['OK', 'OK'],
   nowPlaying: ['Ahora suena', 'Now playing'],
   close: ['Cerrar', 'Close'], desktop: ['Escritorio', 'Desktop'], mobile: ['Móvil', 'Mobile'],
-  roomEnd: ['Gracias por escuchar.', 'Thanks for listening.']
+  roomEnd: ['Gracias por escuchar.', 'Thanks for listening.'],
+  navSvc: ['Servicios', 'Services'],
+  more: ['Desliza para ver más', 'Scroll to see more'],
+  svcBadge: ['Disponible para proyectos freelance', 'Available for freelance projects'],
+  svcT: ['¿Lo hacemos para tu marca?', 'Shall we do it for your brand?'],
+  svcSub: ['Lo que has visto también lo puedo hacer para ti. Cuéntame tu proyecto y te paso presupuesto.', 'Everything you’ve seen, I can make for you too. Tell me about your project and I’ll send you a quote.'],
+  s1t: ['Estrategia y copy', 'Strategy & copy'], s1d: ['ICP, ángulos y mensajes para anuncios y orgánico.', 'ICP, angles and messaging for ads and organic.'],
+  s2t: ['Diseño de ads', 'Ad design'], s2d: ['Estáticos y carruseles para Meta y TikTok, con variantes para testear.', 'Statics and carousels for Meta and TikTok, with variants to test.'],
+  s3t: ['Landings', 'Landing pages'], s3d: ['Páginas de conversión diseñadas y montadas, listas para publicar.', 'Conversion pages designed and built, ready to publish.'],
+  s4t: ['Contenido con IA', 'AI content'], s4d: ['Imagen y vídeo de producto, de campaña y personajes propios.', 'Product and campaign images and video, plus original characters.'],
+  s5t: ['Edición de vídeo', 'Video editing'], s5d: ['Reels, TikTok y vídeo para ads, con subtítulos y versiones por formato.', 'Reels, TikTok and ad video, with captions and versions for every format.'],
+  svcBtn: ['Pedir presupuesto', 'Get a quote'],
+  svcInc: [
+    [['Análisis de cliente ideal (ICP) y mapa de objeciones', 'Ángulos de comunicación para testear', 'Copy para anuncios, landings y orgánico', 'Guiones para UGC y vídeo'],
+     ['Ideal customer profile (ICP) and objection map', 'Messaging angles to test', 'Copy for ads, landing pages and organic', 'Scripts for UGC and video']],
+    [['Estáticos y carruseles para Meta y TikTok', 'Variantes por ángulo y formato para testing A/B', 'Adaptación a stories, feed y reels', 'Piezas listas para subir'],
+     ['Statics and carousels for Meta and TikTok', 'Variants by angle and format for A/B testing', 'Adapted to stories, feed and reels', 'Files ready to upload']],
+    [['Estructura y copy pensados para convertir', 'Diseño y montaje responsive', 'Variantes A/B y lead magnets', 'Lista para publicar'],
+     ['Structure and copy built to convert', 'Design and responsive build', 'A/B variants and lead magnets', 'Ready to publish']],
+    [['Imagen de producto y de campaña', 'Vídeo realista y animado con IA', 'Personajes y mundos propios para tu marca', 'Voces y avatares (ElevenLabs, HeyGen)'],
+     ['Product and campaign imagery', 'Realistic and animated AI video', 'Original characters and worlds for your brand', 'Voices and avatars (ElevenLabs, HeyGen)']],
+    [['Reels, TikTok y vídeo para ads', 'Hooks y ritmo pensados para retener', 'Subtítulos y versiones por formato', 'Edición de UGC'],
+     ['Reels, TikTok and ad video', 'Hooks and pacing built to retain', 'Captions and versions for every format', 'UGC editing']],
+  ],
+  svcNote: ['Respondo en menos de 48 h.', 'I reply within 48 hours.']
 };
 function applyLang() {
   document.documentElement.lang = LANG;
   $$('[data-i18n]').forEach(el => { const v = STR[el.dataset.i18n]; if (v) el.textContent = v[LANG === 'en' ? 1 : 0]; });
   $$('.bar__lang [data-lang]').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === LANG));
+  // email de presupuesto ya preparado
+  const subj = L('Quiero trabajar contigo', 'I’d like to work with you');
+  const bodyTxt = L('Hola Ana,\n\nMarca:\nQué necesito:\nPlazo:\n\nGracias.', 'Hi Ana,\n\nBrand:\nWhat I need:\nTimeline:\n\nThanks.');
+  $$('[data-svc]').forEach(ul => { const inc = STR.svcInc[+ul.dataset.svc - 1][LANG === 'en' ? 1 : 0]; ul.innerHTML = inc.map(t => `<li>${t}</li>`).join(''); });
+  const hb = $('#hireBtn'); if (hb) hb.href = `mailto:hola.anaquintero@gmail.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(bodyTxt)}`;
 }
 
 /* =========================================================
@@ -400,11 +429,11 @@ function renderBlocks() {
       <div class="card card--rose">
         <span class="card__k">${L('Antes y después', 'Before and after')}</span>
         <div class="tabs" role="tablist">${C.map((c, i) => `<button type="button" role="tab" aria-selected="${!i}" class="${i ? '' : 'is-on'}" data-copy="${i}">${c[0]}</button>`).join('')}</div>
-        <div class="ba" style="--pos:0%"><span class="ba__hint" aria-hidden="true">${L('Desliza', 'Slide')} →</span>
+        <div class="ba" style="--pos:50%"><span class="ba__hint" aria-hidden="true">${L('Desliza', 'Slide')} →</span>
           <div class="ba__side ba__before"><span class="ba__lbl">${L('Antes', 'Before')}</span><p data-before>${C[0][1]}</p></div>
           <div class="ba__side ba__after"><span class="ba__lbl">${L('Después', 'After')}</span><p data-after>${C[0][2]}</p></div>
           <span class="ba__handle" aria-hidden="true"></span>
-          <input type="range" min="0" max="100" value="0" aria-label="${L('Comparar antes y después', 'Compare before and after')}">
+          <input type="range" min="0" max="100" value="50" aria-label="${L('Comparar antes y después', 'Compare before and after')}">
         </div></div>
         </div>
       </div>
@@ -491,7 +520,9 @@ function layoutBlocks() {
       const r = (mobile ? .5 : 1) * p.r * .55;
       return { el, w, h, x, y0, r };
     });
-    const T = Math.max(...pieces.map(q => q.y0 + q.h + H * .04));
+    // la sección deja de estar fija cuando el último elemento llega a la mitad de la pantalla
+    const last = pieces.reduce((m, q) => (q.y0 + q.h / 2 > m.y0 + m.h / 2 ? q : m), pieces[0]);
+    const T = Math.max(1, last.y0 + last.h / 2 - H / 2);
     sec.style.height = T + H + 'px';
     return { sec, pieces, T };
   });
@@ -533,7 +564,7 @@ function initPieces() {
       $$('[data-copy]').forEach(x => { x.classList.toggle('is-on', x === btn); x.setAttribute('aria-selected', x === btn); });
       const c = copies()[+btn.dataset.copy];
       $('[data-before]', ba).textContent = c[1]; $('[data-after]', ba).textContent = c[2];
-      ba.classList.remove('is-used'); setPos(0);
+      ba.classList.remove('is-used'); setPos(50);
     }));
     const head = $('.icp__head');
     if (head)
@@ -693,6 +724,105 @@ function initPlayer() {
 }
 
 /* =========================================================
+   MINIJUEGO · el vinilo que salta (pantalla del móvil, 84 px de ancho)
+   ========================================================= */
+function vinylRunner(lcd, { beep }) {
+  const cv = document.createElement('canvas'); cv.className = 'lcd__game'; cv.setAttribute('aria-hidden', 'true');
+  const over = document.createElement('p'); over.className = 'lcd__over'; over.setAttribute('aria-live', 'polite');
+  lcd.append(cv, over);
+  const g = cv.getContext('2d');
+  const W = 84, H = 46, GROUND = 40, INK = 'rgba(46,42,12,.9)';
+  cv.width = W; cv.height = H;
+  const soft = $$('.lcd__soft span', lcd);
+  let on = false, run = false, dead = false, raf = 0, t0 = 0, backT = 0;
+  let y, vy, speed, dist, obs, nextGap, score, best = +(store.get('aq-best') || 0);
+  // dígitos de 3x5 píxeles para el marcador
+  const DIG = ['111101101101111', '010110010010111', '111001111100111', '111001111001111', '101101111001001',
+               '111100111001111', '111100111101111', '111001001001001', '111101111101111', '111101111001111'];
+  const px = (x, yy, w = 1, h = 1) => g.fillRect(Math.round(x), Math.round(yy), w, h);
+  function num(n, x) {
+    String(n).padStart(4, '0').split('').forEach((c, i) => {
+      const m = DIG[+c];
+      for (let k = 0; k < 15; k++) if (m[k] === '1') px(x + i * 4 + (k % 3), 1 + Math.floor(k / 3));
+    });
+  }
+  function reset() { y = GROUND; vy = 0; speed = 0.9; dist = 0; obs = []; nextGap = 40; score = 0; dead = false; }
+  function spawn() {
+    const r = Math.random();
+    // casete (bajo y ancho), altavoz (alto) o dos casetes seguidos
+    if (r < .45) obs.push({ x: W + 2, w: 8, h: 5, k: 'tape' });
+    else if (r < .8) obs.push({ x: W + 2, w: 5, h: 9, k: 'spk' });
+    else { obs.push({ x: W + 2, w: 8, h: 5, k: 'tape' }); obs.push({ x: W + 11, w: 8, h: 5, k: 'tape' }); }
+    nextGap = 34 + Math.random() * 36 + speed * 8;
+  }
+  function draw(frame) {
+    g.clearRect(0, 0, W, H); g.fillStyle = INK;
+    // suelo con rayas que avanzan
+    px(0, GROUND + 1, W, 1);
+    for (let i = 0; i < 9; i++) px(((i * 11 - dist * 1) % W + W) % W, GROUND + 3, 2, 1);
+    // vinilo: disco de 7 px con galleta y agujero; gira mostrando un reflejo
+    const cx = 12, cy = Math.round(y) - 3;
+    for (let dy = -3; dy <= 3; dy++) for (let dx = -3; dx <= 3; dx++) {
+      const r2 = dx * dx + dy * dy;
+      if (r2 <= 10 && r2 > 1) px(cx + dx, cy + dy);
+    }
+    g.clearRect(cx, cy, 1, 1);
+    const a = frame / 3, sx = Math.round(Math.cos(a) * 2), sy = Math.round(Math.sin(a) * 2);
+    g.clearRect(cx + sx, cy + sy, 1, 1);
+    // obstáculos
+    obs.forEach(o => {
+      const ox = Math.round(o.x), top = GROUND + 1 - o.h;
+      if (o.k === 'tape') { px(ox, top, o.w, o.h); g.clearRect(ox + 1, top + 1, o.w - 2, 2); px(ox + 2, top + 1); px(ox + o.w - 3, top + 1); }
+      else { px(ox, top, o.w, o.h); g.clearRect(ox + 1, top + 1, 3, 3); px(ox + 2, top + 2); g.clearRect(ox + 1, top + 5, 3, 2); }
+    });
+    num(score, W - 17);
+  }
+  let frame = 0;
+  function tick(now) {
+    if (!on) return;
+    raf = requestAnimationFrame(tick);
+    if (now - t0 < 1000 / 60) return; t0 = now;
+    frame++;
+    if (run && !dead) {
+      speed = Math.min(2.6, speed + 0.0009);
+      dist += speed; score = Math.floor(dist / 4);
+      vy += 0.28; y = Math.min(GROUND, y + vy); if (y === GROUND) vy = 0;
+      obs.forEach(o => o.x -= speed); obs = obs.filter(o => o.x > -12);
+      nextGap -= speed; if (nextGap <= 0) spawn();
+      // choque (caja del disco algo más pequeña para ser justos)
+      const top = y - 6;
+      for (const o of obs) if (o.x < 14 && o.x + o.w > 10 && y - 1 > GROUND + 1 - o.h && top < GROUND) { crash(); break; }
+      if (score && score % 100 === 0 && frame % 6 === 0) beep(1900, 0.03);
+    }
+    if (!dead) draw(frame);
+  }
+  function crash() {
+    dead = true; run = false; beep(220, 0.25);
+    g.clearRect(0, 0, W, H); g.fillStyle = INK; px(0, GROUND + 1, W, 1);
+    if (score > best) { best = score; store.set('aq-best', best); }
+    over.innerHTML = L(`Fin · ${score}`, `Game over · ${score}`) + `<br><small>${score >= best && score ? L('¡Nuevo récord!', 'New record!') : L(`Récord: ${best}`, `Best: ${best}`)}</small>`;
+    over.classList.add('on');
+    // tras perder, vuelve al menú de contacto
+    clearTimeout(backT); backT = setTimeout(() => api.exit(), 1700);
+  }
+  function labels() {
+    soft[0].textContent = on ? L('← Salir', '← Exit') : STR.soft1[LANG === 'en' ? 1 : 0];
+    soft[1].textContent = on ? L('Saltar', 'Jump') : STR.soft2[LANG === 'en' ? 1 : 0];
+  }
+  const api = {
+    get on() { return on; },
+    press() {
+      if (!on) { on = true; lcd.classList.add('is-game'); labels(); t0 = 0; raf = requestAnimationFrame(tick); }
+      if (dead) return;                       // enseñando la puntuación: se vuelve solo al menú
+      if (!run) { reset(); run = true; over.classList.remove('on'); }
+      if (y >= GROUND - 0.01) { vy = -3.6; beep(1500, 0.04); }
+    },
+    exit() { clearTimeout(backT); on = false; run = false; dead = false; cancelAnimationFrame(raf); lcd.classList.remove('is-game'); over.classList.remove('on'); labels(); }
+  };
+  return api;
+}
+
+/* =========================================================
    CONTACTO · móvil antiguo
    ========================================================= */
 function initPhone() {
@@ -706,10 +836,7 @@ function initPhone() {
     clearTimeout(timer); timer = setTimeout(() => { lcd.classList.remove('is-msg'); buf = ''; }, ms);
   };
   const move = d => { sfx.init(); sfx.beep(1300, 0.05); sel = (sel + d + items.length) % items.length; paint(); };
-  $('#navUp').addEventListener('click', () => move(-1));
-  $('#navDown').addEventListener('click', () => move(1));
-  $('#softR').addEventListener('click', () => move(1));
-  $('#softL').addEventListener('click', () => { sfx.init(); sfx.beep(1600, 0.06); items[sel].click(); });
+  const hideMsg = () => { clearTimeout(timer); lcd.classList.remove('is-msg'); };
   items.forEach((el, i) => {
     el.addEventListener('mouseenter', () => { sel = i; paint(); });
     el.addEventListener('focus', () => { sel = i; paint(); });
@@ -722,17 +849,35 @@ function initPhone() {
   items[0].addEventListener('click', () => show(L('Abriendo<br>email...', 'Opening<br>email...')));
   items[2].addEventListener('click', () => show(L('Abriendo<br>LinkedIn...', 'Opening<br>LinkedIn...')));
 
-  // teclado: marca números y códigos ocultos
   const tones = { 1: 697, 2: 770, 3: 852, 4: 941, 5: 1209, 6: 1336, 7: 1477, 8: 1633, 9: 1100, 0: 1000, '*': 900, '#': 1500 };
-  $('#keys').addEventListener('click', e => {
-    const b = e.target.closest('[data-k]'); if (!b) return;
-    const k = b.dataset.k;
-    sfx.init(); sfx.beep(tones[k] || 1200, 0.07);
-    presses++; buf = (buf + k).slice(-12);
-    show(buf, 2200);
-    if (buf.endsWith('262')) { buf = ''; show(L('Hola,<br>soy Ana', 'Hi,<br>I’m Ana'), 2600); }
-    else if (buf.endsWith('*#06#')) { buf = ''; show('IMEI<br>AQ-2026-CS', 3200); }
-    else if (presses === 8) setTimeout(() => show(L('Prueba<br>2-6-2', 'Try<br>2-6-2'), 2400), 600);
+  const game = vinylRunner(lcd, { beep: (f, t) => { sfx.init(); sfx.beep(f, t); } });
+
+  // Las teclas responden al APRETAR (pointerdown): el móvil se inclina y flota,
+  // y con "click" la pulsación se perdía si la tecla se movía entre apretar y soltar.
+  // Con teclado (Intro/espacio sobre el botón) llega un click con detail 0 y también vale.
+  function onKey(el, fn) {
+    el.addEventListener('pointerdown', e => { if (e.button > 0) return; e.preventDefault(); fn(); });
+    el.addEventListener('click', e => { if (e.detail === 0) fn(); });
+  }
+  const press = k => () => {
+    if (k === 'up') return game.on ? game.press() : move(-1);
+    if (k === 'down') return game.on ? game.press() : move(1);
+    if (k === 'ok') { sfx.init(); sfx.beep(1600, 0.06); return game.on ? game.press() : items[sel].click(); }
+    if (k === 'back') { sfx.init(); sfx.beep(900, 0.05); if (game.on) return game.exit(); hideMsg(); sel = 0; return paint(); }
+    // números, * y #: arrancan el juego (y saltan mientras se juega)
+    sfx.init(); sfx.beep(tones[k] || 1200, 0.05); hideMsg(); game.press();
+  };
+  onKey($('#navUp'), press('up'));
+  onKey($('#navDown'), press('down'));
+  onKey($('#softR'), press('ok'));
+  onKey($('#softL'), press('back'));
+  $$('#keys [data-k]').forEach(b => onKey(b, press(b.dataset.k)));
+  new IntersectionObserver(es => { if (!es[0].isIntersecting && game.on) game.exit(); }).observe(lcd);
+  lcd.addEventListener('pointerdown', e => { if (game.on) { e.preventDefault(); game.press(); } });
+  addEventListener('keydown', e => {
+    if (!game.on) return;
+    if (e.key === 'Escape' || e.key === 'Backspace') { e.preventDefault(); return game.exit(); }
+    if (e.key.length === 1 || e.key.startsWith('Arrow') || e.key === 'Enter') { e.preventDefault(); game.press(); }
   });
 
   // inclinación 3D con el ratón
@@ -791,9 +936,71 @@ function initMisc() {
 }
 
 /* =========================================================
+   SERVICIOS: al pinchar el título se ve qué incluye
+   ========================================================= */
+function initServices() {
+  $$('.svc__t').forEach(b => b.addEventListener('click', () => {
+    const open = b.getAttribute('aria-expanded') !== 'true';
+    $$('.svc__t').forEach(x => { x.setAttribute('aria-expanded', 'false'); x.closest('.svc__i').classList.remove('is-open'); });
+    if (open) { b.setAttribute('aria-expanded', 'true'); b.closest('.svc__i').classList.add('is-open'); }
+    sfx.init(); sfx.tick();
+  }));
+}
+
+/* =========================================================
+   AVATAR SALUDANDO: el fondo verde se quita en tiempo real (canvas)
+   ========================================================= */
+function initHello() {
+  const v = $('#helloSrc'), cv = $('#helloCv'); if (!v || !cv) return;
+  const g = cv.getContext('2d', { willReadFrequently: true });
+  let on = false, raf = 0;
+  function frame() {
+    if (!on) return;
+    raf = requestAnimationFrame(frame);
+    if (v.readyState < 2) return;
+    const w = cv.width = v.videoWidth, h = cv.height = v.videoHeight;
+    g.drawImage(v, 0, 0, w, h);
+    const img = g.getImageData(0, 0, w, h), d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const r = d[i], gg = d[i + 1], b = d[i + 2];
+      const k = gg - Math.max(r, b);                 // cuánto "verde" sobra
+      if (k > 40) d[i + 3] = 0;
+      else if (k > 12) { d[i + 3] = 255 * (1 - (k - 12) / 28); d[i + 1] = Math.max(r, b); }   // borde suave sin halo verde
+    }
+    g.putImageData(img, 0, 0);
+  }
+  new IntersectionObserver(es => {
+    on = es[0].isIntersecting;
+    if (on) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); raf = requestAnimationFrame(frame); }
+    else { v.pause(); cancelAnimationFrame(raf); }
+  }, { rootMargin: '200px' }).observe(cv);
+}
+
+/* =========================================================
+   AVISO "Desliza para ver más": sale si alguien se queda quieto
+   ========================================================= */
+function initMoreHint() {
+  const el = $('#more'); if (!el) return;
+  let t = 0, seen = 0;
+  const atEnd = () => scrollY + innerHeight > document.documentElement.scrollHeight - innerHeight * .6;
+  const busy = () => body.classList.contains('is-intro') || !lupa.hidden || !visor.hidden;
+  const arm = (ms) => { clearTimeout(t); t = setTimeout(() => {
+    if (busy() || atEnd()) return arm(3000);
+    el.classList.toggle('is-up', player.classList.contains('on'));
+    el.classList.add('on'); seen++;
+  }, ms); };
+  addEventListener('scroll', () => { el.classList.remove('on'); arm(seen ? 5000 : 3500); }, { passive: true });
+  addEventListener('pointerdown', () => { el.classList.remove('on'); arm(5000); }, { passive: true });
+  arm(2600);
+}
+
+/* =========================================================
    ARRANQUE
    ========================================================= */
 applyLang();
+initMoreHint();
+initServices();
+initHello();
 renderBlocks();
 renderFan();
 initPieces();
