@@ -39,6 +39,7 @@ const STR = {
   roomEnd: ['Gracias por escuchar.', 'Thanks for listening.'],
   navSvc: ['Servicios', 'Services'],
   more: ['Desliza para ver más', 'Scroll to see more'],
+  gameTip: ['Pulsa cualquier número y juega', 'Press any number to play'],
   svcBadge: ['Disponible para proyectos freelance', 'Available for freelance projects'],
   svcT: ['¿Lo hacemos para tu marca?', 'Shall we do it for your brand?'],
   svcSub: ['Lo que has visto también lo puedo hacer para ti. Cuéntame tu proyecto y te paso presupuesto.', 'Everything you’ve seen, I can make for you too. Tell me about your project and I’ll send you a quote.'],
@@ -419,7 +420,7 @@ function renderBlocks() {
     else if (b.webs) inner = b.webs.map(w => `<figure class="fp" data-k="web" data-ar="1.45">
         <button type="button" class="web" data-web="${w.src}" data-title="${w.t}" aria-label="${L('Ver la landing de', 'View the landing page for')} ${w.t}">
           <span class="web__bar" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="web__view"><iframe data-src="${w.src}" title="Vista previa: ${w.t}" tabindex="-1" aria-hidden="true" loading="lazy"></iframe></span>
+          <span class="web__view"><img src="assets/landing-prev/${w.src.split('/')[1]}-sm.webp" srcset="assets/landing-prev/${w.src.split('/')[1]}-sm.webp 720w, assets/landing-prev/${w.src.split('/')[1]}.webp 1440w" sizes="(max-width:820px) 86vw, 43vw" alt="" loading="lazy" decoding="async"></span>
           <span class="web__go">${L('Ver landing', 'View page')}</span>
         </button></figure>`).join('');
     else return `<section class="fly fly--static" id="b${n}" data-b="${bi}" aria-labelledby="bt${n}">
@@ -530,7 +531,7 @@ function layoutBlocks() {
   onScroll();
 }
 function fitWebs() {
-  $$('.web__view').forEach(v => { const f = $('iframe', v); f.style.transform = `scale(${v.clientWidth / 1440})`; });
+  $$('.web__view').forEach(v => { const f = $('iframe', v); if (f) f.style.transform = `scale(${v.clientWidth / 1440})`; });
 }
 
 /* --- interacciones de piezas --- */
@@ -851,6 +852,7 @@ function initPhone() {
 
   const tones = { 1: 697, 2: 770, 3: 852, 4: 941, 5: 1209, 6: 1336, 7: 1477, 8: 1633, 9: 1100, 0: 1000, '*': 900, '#': 1500 };
   const game = vinylRunner(lcd, { beep: (f, t) => { sfx.init(); sfx.beep(f, t); } });
+  const tip = $('.phone-tip');
 
   // Las teclas responden al APRETAR (pointerdown): el móvil se inclina y flota,
   // y con "click" la pulsación se perdía si la tecla se movía entre apretar y soltar.
@@ -866,6 +868,7 @@ function initPhone() {
     if (k === 'back') { sfx.init(); sfx.beep(900, 0.05); if (game.on) return game.exit(); hideMsg(); sel = 0; return paint(); }
     // números, * y #: arrancan el juego (y saltan mientras se juega)
     sfx.init(); sfx.beep(tones[k] || 1200, 0.05); hideMsg(); game.press();
+    if (tip) tip.classList.add('is-played');
   };
   onKey($('#navUp'), press('up'));
   onKey($('#navDown'), press('down'));
